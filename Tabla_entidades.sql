@@ -1,3 +1,4 @@
+CREATE TABLE discografia (
 id_discografia SERIAL PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL
 );
@@ -12,3 +13,5 @@ CREATE TABLE genero(
 id_genero serial PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL
 );
+
+select * from genero;
