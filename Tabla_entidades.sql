@@ -67,3 +67,27 @@ REFERENCES canciones(id_cancion),
 FOREIGN KEY(id_idioma)
 REFERENCES idiomas(id_idioma)
 );
+
+Create table calificaciones(
+id_usuario int,
+id_cancion int,
+valoracion float,
+
+FOREIGN KEY(id_usuario)
+REFERENCES usuarios(id_usuario),
+FOREIGN KEY(id_cancion)
+REFERENCES canciones(id_cancion)
+
+);
+
+Create table comentarios(
+id_usuario int,
+id_cancion int,
+texto text,
+
+FOREIGN KEY(id_usuario)
+REFERENCES usuarios(id_usuario),
+FOREIGN KEY(id_cancion)
+REFERENCES canciones(id_cancion)
+
+);
