@@ -24,3 +24,19 @@ CREATE TABLE artistas(
 id_artista VARCHAR(50) PRIMARY KEY,
 nombre VARCHAR(50) Not NULL
 );
+
+CREATE TABLE albumes(
+    id_album VARCHAR(50) PRIMARY KEY,
+    
+    id_artista VARCHAR(50),
+    id_discografia INT,
+
+    nombre_album VARCHAR(50),
+    fecha_lanzamiento DATE,
+
+    FOREIGN KEY (id_artista)
+        REFERENCES artistas(id_artista),
+
+    FOREIGN KEY (id_discografia)
+        REFERENCES discografias(id_discografia)
+);
