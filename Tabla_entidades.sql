@@ -91,3 +91,18 @@ FOREIGN KEY(id_cancion)
 REFERENCES canciones(id_cancion)
 
 );
+
+Create table reproducciones(
+id_reproduccion VARCHAR(50) PRIMARY KEY,
+estado BOOLEAN not NULL,
+tiempo_actual float,
+id_cancion int,
+id_usuario int,
+FOREIGN KEY(id_usuario)
+REFERENCES usuarios(id_usuario),
+FOREIGN KEY(id_cancion)
+REFERENCES canciones(id_cancion)
+
+
+
+);
