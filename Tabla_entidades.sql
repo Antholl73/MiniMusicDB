@@ -106,3 +106,41 @@ REFERENCES canciones(id_cancion)
 
 
 );
+CREATE TABLE playlists(
+id SERIAL PRIMARY KEY,
+tipo VARCHAR(13) NOT NULL,
+nombre_playlist VARCHAR (30) NOT NULL UNIQUE,
+fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+tamano_ranking INTEGER,
+decada INTEGER,
+descripcion TEXT,
+
+CONSTRAINT descripcion_tamano CHECK (char_length(descripcion) < 600),
+CONSTRAINT tipo_playlists CHECK (tipo IN ('historial','calificacion','favoritos','por_decadas','personalizada'))
+);
+
+create table detalles_playlist(
+id int,
+id_cancion int,
+posicion INTEGER,
+FOREIGN KEY (id)
+REFERENCES playlists(id),
+FOREIGN KEY (id_cancion)
+REFERENCES canciones(id_cancion)
+
+);
+
+create table historiales(
+id_historial serial,
+fecha date not null,
+id_usuario int,
+id_cancion int,
+id int,
+FOREIGN KEY (id_usuario)
+REFERENCES usuarios(id_usuario),
+FOREIGN KEY (id_cancion)
+REFERENCES canciones(id_cancion),
+FOREIGN KEY (id)
+REFERENCES playlists(id)
+
+);
