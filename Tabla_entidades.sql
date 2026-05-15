@@ -54,3 +54,16 @@ FOREIGN KEY (id_genero)
 REFERENCES generos(id_genero)
 
 );
+
+CREATE TABLE letra_canciones(
+
+id_letra serial PRIMARY KEY,
+contenido text,
+id_cancion int,
+id_idioma VARCHAR(50),
+
+FOREIGN KEY(id_cancion)
+REFERENCES canciones(id_cancion),
+FOREIGN KEY(id_idioma)
+REFERENCES idiomas(id_idioma)
+);
