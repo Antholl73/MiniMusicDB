@@ -5,7 +5,7 @@ nombre VARCHAR(50) NOT NULL
 
 CREATE TABLE usuarios(
 id SERIAL PRIMARY KEY,
-correo VARCHAR(50) NOT NULL , --NOTE: Deberia ser unique, revisar el modelo.
+correo VARCHAR(50) NOT NULL UNIQUE, --FIX: Ahora correo es UNIQUE porque dos usuarios no pueden tener el mismo correo
 nombre VARCHAR(50) NOT NULL
 );
 
@@ -27,7 +27,7 @@ nombre VARCHAR(50) NOT NULL
 CREATE TABLE albumes(
   id INTEGER,
   id_artista INTEGER,
-  id_discografica INTEGER UNIQUE, --NOTE: El modelo dice que es unique, pero no tiene mucho sentido que una discografica solo pueda tener un album a su nombre, discutir.
+  id_discografica INTEGER, --FIX: Se quitó UNIQUE porque una discografica puede tener varios albumes (uno a muchos)
   nombre_album VARCHAR(60) NOT NULL,
   fecha_lanzamiento DATE NOT NULL,
   
@@ -42,17 +42,18 @@ CREATE TABLE albumes(
   REFERENCES discograficas(id)
 );
 
-
 CREATE TABLE canciones(
 id SERIAL PRIMARY KEY,
-id_album INTEGER,  --FIX: Album se identifica con dos pk, asi que deberiamos tambien agarrar dos si queremos referenciar. Cambiar SQL y cambiar MR.
+id_album INTEGER, --FIX: Album se identifica con dos pk, asi que deberiamos tambien agarrar dos si queremos referenciar. Cambiar SQL y cambiar MR.
+id_artista INTEGER, 
 id_genero INTEGER,
+
 nombre VARCHAR(50) NOT NULL,
 duracion REAL NOT NULL CHECK (duracion > 0 ),
 
 CONSTRAINT fk_album_cancion
-FOREIGN KEY (id_album)
-REFERENCES albumes(id),
+FOREIGN KEY (id_album, id_artista)  --FIX: La tabla albumes tiene una Primary Key compuesta, por lo que necesita id e id_artista.
+REFERENCES albumes(id, id_artista), --FIX: La tabla albumes tiene una Primary Key compuesta, por lo que necesita id e id_artista.
 
 CONSTRAINT fk_genero_cancion
 FOREIGN KEY (id_genero)
@@ -79,6 +80,7 @@ REFERENCES idiomas(id)
 );
 
 CREATE TABLE calificaciones(
+id SERIAL PRIMARY KEY, --FIX: Cada calificacion debería tener su propio id para poder hacer varias calificaciones
 id_usuario INTEGER,
 id_cancion INTEGER,
 valoracion INTEGER NOT NULL,
@@ -98,11 +100,13 @@ CONSTRAINT valoracion_calificacion CHECK (valoracion BETWEEN 0 AND 5)
 );
 
 CREATE TABLE comentarios(
+id SERIAL PRIMARY KEY, --FIX: Cada calificacion debería tener su propio id para poder hacer varias calificaciones
 id_usuario INTEGER,
 id_cancion INTEGER,
 texto TEXT NOT NULL,
+fecha_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP --NOTE: sería bueno que cada comentario tenga una fecha y hora para poder ordenarlos de más reciente a menos reciente
 
-PRIMARY KEY(id_usuario, id_cancion),
+PRIMARY KEY(id_usuario, id_cancion, fecha_comentario), --NOTE: la PRIMARY KEY debería ser una combinación de id_usuario, id_canción, fecha_comentario
 
 CONSTRAINT fk_usuario_comentarios
 FOREIGN KEY(id_usuario)
