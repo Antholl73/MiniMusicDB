@@ -19,4 +19,8 @@ id_idioma VARCHAR(50) PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL
 );
 
-select * from genero;
+
+CREATE TABLE artistas(
+id_artista VARCHAR(50) PRIMARY KEY,
+nombre VARCHAR(50) Not NULL
+);
