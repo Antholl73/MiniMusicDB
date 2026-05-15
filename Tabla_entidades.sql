@@ -17,6 +17,6 @@ nombre VARCHAR(50) NOT NULL
 CREATE TABLE idiomas(
 id_idioma VARCHAR(50) PRIMARY KEY,
 nombre VARCHAR(50) NOT NULL
-)
+);
 
 select * from genero;

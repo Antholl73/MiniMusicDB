@@ -1,6 +1,8 @@
 # MiniMusicDB
 
+AYUDA PARA QUE USEN GITHUB
 
-
-Primer push. test de si funciona el push
-
+ver estado -> git status
+ver ramas -> git branch
+cambiar de rama -> git checkout nombre (nombre = main u otra rama)
+ver historial -> git log --oneline
