@@ -2,8 +2,11 @@
 INTEGRANTES:
 
 -Aviles Fuentes Anthony Francisco
+
 -Coaquira Llave Dayron Giovani
+
 -Rodrigo Renato Gamero Bocangel
+
 -Ortiz Molina Fabian Marcelo
 
 AYUDA PARA QUE USEN GITHUB
