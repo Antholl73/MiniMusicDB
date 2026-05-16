@@ -80,7 +80,7 @@ REFERENCES idiomas(id)
 );
 
 CREATE TABLE calificaciones(
-id SERIAL PRIMARY KEY, --FIX: Cada calificacion debería tener su propio id para poder hacer varias calificaciones
+--FIX: Se removio la Primary Key de calificaciones porque un usuario no puede hacer varias calificaciones al mismo tiempo
 id_usuario INTEGER,
 id_cancion INTEGER,
 valoracion INTEGER NOT NULL,
@@ -100,13 +100,13 @@ CONSTRAINT valoracion_calificacion CHECK (valoracion BETWEEN 0 AND 5)
 );
 
 CREATE TABLE comentarios(
-id SERIAL PRIMARY KEY, --FIX: Cada calificacion debería tener su propio id para poder hacer varias calificaciones
+id SERIAL, --FIX: PRIMARY KEY va abajo
 id_usuario INTEGER,
 id_cancion INTEGER,
 texto TEXT NOT NULL,
-fecha_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP --NOTE: sería bueno que cada comentario tenga una fecha y hora para poder ordenarlos de más reciente a menos reciente
+fecha_comentario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
-PRIMARY KEY(id_usuario, id_cancion, fecha_comentario), --NOTE: la PRIMARY KEY debería ser una combinación de id_usuario, id_canción, fecha_comentario
+PRIMARY KEY(id_usuario, id_cancion, id), --FIX:: la PRIMARY KEY debería ser una combinación de id_usuario, id_canción, id_comentario
 
 CONSTRAINT fk_usuario_comentarios
 FOREIGN KEY(id_usuario)
