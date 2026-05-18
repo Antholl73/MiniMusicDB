@@ -63,12 +63,11 @@ REFERENCES generos(id)
 
 CREATE TABLE letras_cancion(
 
-id INTEGER,
 id_cancion INTEGER,
 id_idioma INTEGER,
 contenido TEXT NOT NULL,
 
-PRIMARY KEY(id, id_cancion, id_idioma),
+PRIMARY KEY(id_cancion, id_idioma),
 
 CONSTRAINT fk_cancion_letras
 FOREIGN KEY(id_cancion)
@@ -171,7 +170,7 @@ id_usuario INTEGER,
 id_cancion INTEGER,
 fecha DATE NOT NULL,
 
-PRIMARY KEY (id, id_usuario),
+PRIMARY KEY (id, id_usuario, id_cancion),
 
 CONSTRAINT fk_usuario_historial
 	FOREIGN KEY (id_usuario)
