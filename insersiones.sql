@@ -1,1 +1,4 @@
---Hacer mínimo 5 insersiones de 8 tablas
+--Utilizando el script de tablas que crearon en la clase anterior, deben poblar 8 de sus tablas.
+--Mínimo 5 registros por tabla para cumplir la rúbrica.
+--¡Cuidado con el orden! No pueden poblar una tabla hija (ej: Pedidos) si antes no han poblado la tabla
+--padre (Clientes), debido a las Llaves Foráneas.
