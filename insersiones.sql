@@ -26,3 +26,10 @@ INSERT INTO artistas (nombre) VALUES
 ('Metallica'),
 ('Dua Lipa'),
 ('Marc Anthony');
+
+--Llenado tabla discográficas
+INSERT INTO discográficas (nombre) VALUES
+('Universal music'),
+('Prime music'),
+('Malditos music'),
+('Sony Music');
