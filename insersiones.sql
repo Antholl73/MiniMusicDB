@@ -21,11 +21,11 @@ INSERT INTO idiomas (nombre) VALUES
 
 --Llenado tabla artistas
 INSERT INTO artistas (nombre) VALUES
-('Luis Miguel'),
-('Bad Bunny'),
+('Gorillaz'),
+('Michael Jackson'),
 ('Metallica'),
 ('Dua Lipa'),
-('Marc Anthony');
+('Rammstein')
 
 --Llenado tabla discográficas
 INSERT INTO discográficas (nombre) VALUES
@@ -33,3 +33,9 @@ INSERT INTO discográficas (nombre) VALUES
 ('Prime music'),
 ('Malditos music'),
 ('Sony Music');
+
+INSERT INTO usuarios (correo, nombre) VALUES
+('juanitoAlcachofa@gmail.com', 'Juan'),
+('muchacho_bien777@gmail.com', 'Alberto'),
+('ElsaPato34@gmail.com', 'Antholl73'),
+('marcelo_pro123@gmail.com', 'Marcelo_Ortiz');
