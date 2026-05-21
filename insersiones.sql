@@ -11,10 +11,18 @@ INSERT INTO generos (nombre) VALUES
 ('Rock'),
 ('Metal');
 
---Lenado tabla idiomas
+--Llenado tabla idiomas
 INSERT INTO idiomas (nombre) VALUES
 ('Español'),
 ('Inglés'),
 ('Portugués'),
 ('Francés'),
 ('Coreano');
+
+--Llenado tabla artistas
+INSERT INTO artistas (nombre) VALUES
+('Luis Miguel'),
+('Bad Bunny'),
+('Metallica'),
+('Dua Lipa'),
+('Marc Anthony');
