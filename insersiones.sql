@@ -3,11 +3,18 @@
 --¡Cuidado con el orden! No pueden poblar una tabla hija (ej: Pedidos) si antes no han poblado la tabla
 --padre (Clientes), debido a las Llaves Foráneas.
 
-INSERT INTO generos(nombre) VALUES('salsa');
-INSERT INTO generos(nombre) VALUES('reggueaton');
-INSERT INTO generos(nombre) VALUES('pop');
-INSERT INTO generos(nombre) VALUES('punkmetal');
-INSERT INTO generos(nombre) VALUES('metal');
-INSERT INTO generos(nombre) VALUES('heavy metal');
-INSERT INTO generos(nombre) VALUES('rock');
+--Llenado tabla generos
+INSERT INTO generos (nombre) VALUES
+('Salsa'),
+('Reggaeton'),
+('Pop'),
+('Rock'),
+('Metal');
 
+--Lenado tabla idiomas
+INSERT INTO idiomas (nombre) VALUES
+('Español'),
+('Inglés'),
+('Portugués'),
+('Francés'),
+('Coreano');
