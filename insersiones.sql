@@ -3,7 +3,6 @@
 --¡Cuidado con el orden! No pueden poblar una tabla hija (ej: Pedidos) si antes no han poblado la tabla
 --padre (Clientes), debido a las Llaves Foráneas.
 
---Llenado tabla generos
 INSERT INTO generos (nombre) VALUES
 ('Salsa'),
 ('Reggaeton'),
@@ -25,10 +24,10 @@ INSERT INTO artistas (nombre) VALUES
 ('Michael Jackson'),
 ('Metallica'),
 ('Dua Lipa'),
-('Rammstein')
+('Rammstein');--fix:faltaba ;
 
 --Llenado tabla discográficas
-INSERT INTO discográficas (nombre) VALUES
+INSERT INTO discograficas (nombre) VALUES
 ('Universal music'),
 ('Prime music'),
 ('Malditos music'),
@@ -39,3 +38,10 @@ INSERT INTO usuarios (correo, nombre) VALUES
 ('muchacho_bien777@gmail.com', 'Alberto'),
 ('ElsaPato34@gmail.com', 'Antholl73'),
 ('marcelo_pro123@gmail.com', 'Marcelo_Ortiz');
+
+--LLenado tabla albumes
+INSERT INTO albumes(id, id_artista, id_discografica, nombre_album, fecha_lanzamiento) VALUES
+(1, 1, 1, 'Demon Days', '2005-05-11'),
+(2, 2, 4, 'Thriller', '1982-11-30'),
+(3, 3, 1, 'Master of Puppets', '1986-03-03'),
+(4, 4, 4, 'Future Nostalgia', '2020-03-27');
