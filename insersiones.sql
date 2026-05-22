@@ -45,3 +45,20 @@ INSERT INTO albumes(id, id_artista, id_discografica, nombre_album, fecha_lanzami
 (2, 2, 4, 'Thriller', '1982-11-30'),
 (3, 3, 1, 'Master of Puppets', '1986-03-03'),
 (4, 4, 4, 'Future Nostalgia', '2020-03-27');
+
+--LLenado de tabla canciones
+INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
+(1,1,1,'Homura',4.34),
+(2,2,2,'Thriller',5.57),
+(3,3,5,'Master of Puppets',8.36),
+(4,4,3,'Levitating',3.23);
+
+
+
+
+
+
+
+
+
+
