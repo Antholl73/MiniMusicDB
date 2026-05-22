@@ -9,6 +9,8 @@ INTEGRANTES:
 
 -Ortiz Molina Fabian Marcelo
 
+El Repositorio cuenta con 14 tablas
+
 AYUDA PARA QUE USEN GITHUB
 
 ver estado -> git status
