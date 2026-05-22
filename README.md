@@ -9,7 +9,8 @@ INTEGRANTES:
 
 -Ortiz Molina Fabian Marcelo
 
-El Repositorio cuenta con 14 tablas
+La database se modelo con 14 entidades, 
+El archivo crear_tablas.sql crea 14 tablas
 
 AYUDA PARA QUE USEN GITHUB
 
