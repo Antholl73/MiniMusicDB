@@ -58,7 +58,13 @@ INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
 
 
 
+--Modificacion
 
+--modificacion discograficas
+
+UPDATE discograficas 
+SET nombre='YT music'
+WHERE nombre='Prime music';
 
 
 
