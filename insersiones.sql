@@ -3,6 +3,7 @@
 --¡Cuidado con el orden! No pueden poblar una tabla hija (ej: Pedidos) si antes no han poblado la tabla
 --padre (Clientes), debido a las Llaves Foráneas.
 
+
 INSERT INTO generos (nombre) VALUES
 ('Salsa'),
 ('Reggaeton'),
@@ -53,10 +54,21 @@ INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
 (3,3,5,'Master of Puppets',8.36),
 (4,4,3,'Levitating',3.23);
 
+--Llenado tabla playlists
 
+INSERT INTO playlists (tipo, nombre_playlist) 
+VALUES ('personalizada','Mi playlist personal');
 
+INSERT INTO playlists (tipo, nombre_playlist, tamano_ranking) 
+VALUES ('calificacion','Mis mejores 5 canciones', 5);
 
+--Llenado tabla detalles_playlist
 
+INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
+VALUES (1, 1, 1);
+
+INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
+VALUES (1, 2, 2);
 
 --Modificacion
 
