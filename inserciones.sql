@@ -62,6 +62,14 @@ INSERT INTO letras_cancion(id_cancion,id_idioma,contenido) VALUES
 (3, 2, 'End of passion play, crumbling away...'),
 (4, 2, 'Billboard Baby...');
 
+--Llenando tabla calificaciones
+INSERT INTO  calificaciones(id_usuario,id_cancion,valoracion) VALUES
+(1,1,1),
+(2,1,3),
+(3,3,4),
+(2,4,5),
+(4,2,3);
+
 --Llenado tabla playlists
 
 INSERT INTO playlists (tipo, nombre_playlist) 
