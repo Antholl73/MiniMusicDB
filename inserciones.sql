@@ -72,6 +72,23 @@ VALUES (1, 2, 2);
 
 --Modificacion
 
+--modificacion playlist
+
+UPDATE playlist 
+SET nombre_playlist = 'Playlist de Juan'
+WHERE id = 1 ;
+
+--modificacion detalles_playlist
+
+UPDATE detalles_playlist 
+SET posicion = 2
+WHERE id_cancion = 1;
+
+UPDATE detalles_playlist 
+SET posicion = 1
+WHERE id_cancion = 2;
+
+
 --modificacion discograficas
 
 UPDATE discograficas 
