@@ -54,6 +54,14 @@ INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
 (3,3,5,'Master of Puppets',8.36),
 (4,4,3,'Levitating',3.23);
 
+--Llenado de la tabla letras_canciones
+INSERT INTO letras_cancion(id_cancion,id_idioma,contenido) VALUES 
+(1, 1, 'Gritando adios y gracias...'),
+(1, 2, 'Goodbye and thank you...'),
+(2, 2, 'Its close to midnight...'),
+(3, 2, 'End of passion play, crumbling away...'),
+(4, 2, 'Billboard Baby...');
+
 --Llenado tabla playlists
 
 INSERT INTO playlists (tipo, nombre_playlist) 
