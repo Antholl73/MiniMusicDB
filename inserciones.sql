@@ -104,7 +104,7 @@ VALUES (1, 2, 2);
 
 --modificacion playlist
 
-UPDATE playlist 
+UPDATE playlists 
 SET nombre_playlist = 'Playlist de Juan'
 WHERE id = 1 ;
 
