@@ -70,6 +70,13 @@ INSERT INTO  calificaciones(id_usuario,id_cancion,valoracion) VALUES
 (2,4,5),
 (4,2,3);
 
+--Llenado tabla comentarios
+INSERT INTO comentarios(id_usuario,id_cancion,texto) VALUES
+(1,1,'lo odiooo'),
+(2,1,'esta bien'),
+(1,4,'XD'),
+(4,4,'sin comentarios...');
+
 --Llenado tabla playlists
 
 INSERT INTO playlists (tipo, nombre_playlist) 
