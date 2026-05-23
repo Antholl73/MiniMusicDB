@@ -139,5 +139,5 @@ WHERE nombre='Michael Jackson';
 --modificacion a albumes
 
 UPDATE albumes
-SET nombre='The best pop music'
+SET nombre_album='The best pop music'
 WHERE nombre='Thriller';
