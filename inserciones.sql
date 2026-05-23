@@ -86,10 +86,10 @@ INSERT INTO reproducciones(id,id_cancion,id_usuario,estado,tiempo_actual) VALUES
 
 --Llenado tabla playlists
 
-INSERT INTO playlists (tipo, nombre_playlist) 
+INSERT INTO playlists (tipo, nombre) 
 VALUES ('personalizada','Mi playlist personal');
 
-INSERT INTO playlists (tipo, nombre_playlist, tamano_ranking) 
+INSERT INTO playlists (tipo, nombre, tamano_ranking) 
 VALUES ('calificacion','Mis mejores 5 canciones', 5);
 
 --Llenado tabla detalles_playlist
@@ -104,8 +104,8 @@ VALUES (1, 2, 2);
 
 --modificacion playlist
 
-UPDATE playlists 
-SET nombre_playlist = 'Playlist de Juan'
+UPDATE playlist 
+SET nombre = 'Playlist de Juan'
 WHERE id = 1 ;
 
 --modificacion detalles_playlist
