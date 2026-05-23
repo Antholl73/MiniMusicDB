@@ -141,3 +141,8 @@ WHERE nombre='Michael Jackson';
 UPDATE albumes
 SET nombre_album='The best pop music'
 WHERE nombre='Thriller';
+
+--modificacion comentarios
+UPDATE comentarios
+SET texto = 'me gusta'
+WHERE id=1;
