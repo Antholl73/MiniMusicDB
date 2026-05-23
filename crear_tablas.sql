@@ -155,6 +155,9 @@ posicion INTEGER NOT NULL,
 
 PRIMARY KEY(id_playlist, id_cancion),
 
+UNIQUE(id_playlist, posicion),
+CONSTRAINT posicion_positiva
+    CHECK (posicion > 0),
 CONSTRAINT fk_playlist_detalles
     FOREIGN KEY (id_playlist)
     REFERENCES playlists(id),
