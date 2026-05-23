@@ -77,6 +77,13 @@ INSERT INTO comentarios(id_usuario,id_cancion,texto) VALUES
 (1,4,'XD'),
 (4,4,'sin comentarios...');
 
+--Llenado tabla reproducciones
+INSERT INTO reproducciones(id,id_cancion,id_usuario,estado,tiempo_actual) VALUES
+('repro-001',1,3,FALSE,0.6),
+('repro-002',1,3,FALSE,5.6),
+('repro-003',2,3,FALSE,5.4),
+('repro-004',4,3,TRUE,4.4);
+
 --Llenado tabla playlists
 
 INSERT INTO playlists (tipo, nombre_playlist) 
