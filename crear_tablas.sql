@@ -164,7 +164,7 @@ CONSTRAINT fk_playlist_detalles
 CONSTRAINT fk_cancion_detalles
     FOREIGN KEY (id_cancion)
     REFERENCES canciones(id)
-
+DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE historiales(
