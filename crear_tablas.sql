@@ -155,7 +155,9 @@ posicion INTEGER NOT NULL,
 
 PRIMARY KEY(id_playlist, id_cancion),
 
-UNIQUE(id_playlist, posicion),
+CONSTRAINT posicion_unica
+    UNIQUE(id_playlist, posicion)
+    DEFERRABLE INITIALLY DEFERRED,
 CONSTRAINT posicion_positiva
     CHECK (posicion > 0),
 CONSTRAINT fk_playlist_detalles
@@ -164,7 +166,6 @@ CONSTRAINT fk_playlist_detalles
 CONSTRAINT fk_cancion_detalles
     FOREIGN KEY (id_cancion)
     REFERENCES canciones(id)
-DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE historiales(
