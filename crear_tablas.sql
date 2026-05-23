@@ -138,7 +138,7 @@ REFERENCES canciones(id)
 CREATE TABLE playlists(
 id SERIAL PRIMARY KEY,
 tipo VARCHAR(13) NOT NULL,
-nombre_playlist VARCHAR (30) NOT NULL UNIQUE,
+nombre VARCHAR (30) NOT NULL UNIQUE,
 fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 tamano_ranking INTEGER,
 decada INTEGER,
