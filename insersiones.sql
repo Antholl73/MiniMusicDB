@@ -89,4 +89,8 @@ UPDATE artistas
 SET nombre='El Rey del Pop'  
 WHERE nombre='Michael Jackson';
 
+--modificacion a albumes
 
+UPDATE albumes
+SET nombre='The best pop music'
+WHERE nombre='Thriller';
