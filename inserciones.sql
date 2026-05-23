@@ -87,7 +87,7 @@ SET nombre_playlist = 'Playlist de Juan'
 WHERE id = 1 ;
 
 --modificacion detalles_playlist
-
+BEGIN;
 UPDATE detalles_playlist 
 SET posicion = 2
 WHERE id_cancion = 1;
@@ -95,7 +95,7 @@ WHERE id_cancion = 1;
 UPDATE detalles_playlist 
 SET posicion = 1
 WHERE id_cancion = 2;
-
+COMMIT;
 
 --modificacion discograficas
 
