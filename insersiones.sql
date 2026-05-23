@@ -81,7 +81,7 @@ WHERE nombre='Prime music';
 --modificacion usuarios
 UPDATE usuarios
 SET correo = 'eljuan_alcachofa@gmail.com'
-WHERE nombre = 'juan';
+WHERE nombre = 'Juan';
 
 
 --modificacion a artistas
