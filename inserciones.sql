@@ -157,12 +157,19 @@ INSERT INTO calificaciones(id_usuario,id_cancion,valoracion) VALUES
 (7,7,5),
 (8,8,5);
 
---agregando mas comentarios
+
 INSERT INTO comentarios(id_usuario,id_cancion,texto) VALUES
 (5,5,'Buenísima canción'),
 (6,6,'Me encanta'),
 (7,7,'Mi favorita'),
 (8,8,'Excelente voz');
+
+--agregando estados de reproduccion
+INSERT INTO reproducciones(id,id_cancion,id_usuario,estado,tiempo_actual) VALUES
+('repro-005',5,5,FALSE,2.5),
+('repro-006',6,6,TRUE,1.8),
+('repro-007',7,7,FALSE,3.0),
+('repro-008',8,8,TRUE,2.2);
 --Modificacion
 
 --modificacion playlist
