@@ -150,12 +150,19 @@ INSERT INTO letras_cancion(id_cancion,id_idioma,contenido) VALUES
 (6,2,'It starts with one thing...'),
 (7,2,'Look at the stars...'),
 (8,2,'There is a fire starting in my heart...');
---agregando algunas calificaciones 
+
 INSERT INTO calificaciones(id_usuario,id_cancion,valoracion) VALUES
 (5,5,5),
 (6,6,4),
 (7,7,5),
 (8,8,5);
+
+--agregando mas comentarios
+INSERT INTO comentarios(id_usuario,id_cancion,texto) VALUES
+(5,5,'Buenísima canción'),
+(6,6,'Me encanta'),
+(7,7,'Mi favorita'),
+(8,8,'Excelente voz');
 --Modificacion
 
 --modificacion playlist
