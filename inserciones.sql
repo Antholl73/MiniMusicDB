@@ -132,14 +132,18 @@ INSERT INTO artistas (nombre) VALUES
 ('Coldplay'),
 ('Adele');
 
---agregando mas albumes
+
 INSERT INTO albumes(id, id_artista, id_discografica, nombre_album, fecha_lanzamiento) VALUES
 (5,5,5,'Mutter','2001-04-02'),
 (6,6,6,'Hybrid Theory','2000-10-24'),
 (7,7,7,'Parachutes','2000-07-10'),
 (8,8,8,'21','2011-01-24');
-
-
+--agregando mas canciones
+INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
+(5,5,5,'Sonne',4.32),
+(6,6,8,'In the End',3.36),
+(7,7,7,'Yellow',4.28),
+(8,8,3,'Rolling in the Deep',3.48);
 
 --Modificacion
 
