@@ -164,12 +164,21 @@ INSERT INTO comentarios(id_usuario,id_cancion,texto) VALUES
 (7,7,'Mi favorita'),
 (8,8,'Excelente voz');
 
---agregando estados de reproduccion
+
 INSERT INTO reproducciones(id,id_cancion,id_usuario,estado,tiempo_actual) VALUES
 ('repro-005',5,5,FALSE,2.5),
 ('repro-006',6,6,TRUE,1.8),
 ('repro-007',7,7,FALSE,3.0),
 ('repro-008',8,8,TRUE,2.2);
+--agregando mas playlist
+INSERT INTO playlists (tipo,nombre,descripcion) VALUES
+('favoritos','Favoritas de Sofia','Mis canciones favoritas'),
+('personalizada','Rock clásico','Solo rock'),
+('historial','Escuchadas recientemente','Historial personal'),
+('por_decadas','Hits 2000','Lo mejor de los 2000'),
+('favoritos','Top pop','Mis favoritas de pop'),
+('personalizada','Modo estudio','Música tranquila');
+
 --Modificacion
 
 --modificacion playlist
