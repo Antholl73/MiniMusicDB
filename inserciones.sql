@@ -179,7 +179,7 @@ INSERT INTO playlists (tipo,nombre,descripcion) VALUES
 ('por_decadas','Hits 2000','Lo mejor de los 2000'),
 ('favoritos','Top pop','Mis favoritas de pop'),
 ('personalizada','Modo estudio','Música tranquila');
---agregando detalles_playlist
+
 INSERT INTO detalles_playlist(id_playlist,id_cancion,posicion) VALUES
 (2,3,1),
 (2,4,2),
@@ -187,6 +187,16 @@ INSERT INTO detalles_playlist(id_playlist,id_cancion,posicion) VALUES
 (4,6,1),
 (5,7,1),
 (6,8,1);
+--agregando los historiales
+INSERT INTO historiales(id,id_usuario,id_cancion,fecha) VALUES
+(1,1,1,'2026-05-20'),
+(2,2,2,'2026-05-21'),
+(3,3,3,'2026-05-22'),
+(4,4,4,'2026-05-23'),
+(5,5,5,'2026-05-24'),
+(6,6,6,'2026-05-25'),
+(7,7,7,'2026-05-26'),
+(8,8,8,'2026-05-27');
 
 --Modificacion
 
