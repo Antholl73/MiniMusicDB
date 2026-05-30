@@ -108,7 +108,7 @@ INSERT INTO discograficas (nombre) VALUES
 ('Atlantic Records'),
 ('Columbia Records');
 
---agregando usuarios
+
 
 INSERT INTO usuarios (correo, nombre) VALUES
 ('sofia_music99@gmail.com', 'Sofia'),
@@ -116,6 +116,11 @@ INSERT INTO usuarios (correo, nombre) VALUES
 ('lucia_pop@gmail.com', 'Lucia'),
 ('diego_metal@gmail.com', 'Diego');
 
+--agregando mas generos
+INSERT INTO generos (nombre) VALUES
+('Electrónica'),
+('Jazz'),
+('Hip Hop');
 --Modificacion
 
 --modificacion playlist
