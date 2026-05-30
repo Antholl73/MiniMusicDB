@@ -144,12 +144,18 @@ INSERT INTO canciones (id_album,id_artista,id_genero,nombre,duracion) VALUES
 (6,6,8,'In the End',3.36),
 (7,7,7,'Yellow',4.28),
 (8,8,3,'Rolling in the Deep',3.48);
---agregando algunas letras_cancion( solo son unas partes)
+
 INSERT INTO letras_cancion(id_cancion,id_idioma,contenido) VALUES
-(5,7,'Hier kommt die Sonne...'),
+(5,7,'Hier kommt git pdie Sonne...'),
 (6,2,'It starts with one thing...'),
 (7,2,'Look at the stars...'),
 (8,2,'There is a fire starting in my heart...');
+--agregando algunas calificaciones 
+INSERT INTO calificaciones(id_usuario,id_cancion,valoracion) VALUES
+(5,5,5),
+(6,6,4),
+(7,7,5),
+(8,8,5);
 --Modificacion
 
 --modificacion playlist
