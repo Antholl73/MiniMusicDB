@@ -104,7 +104,7 @@ VALUES (1, 2, 2);
 
 --modificacion playlist
 
-UPDATE playlist 
+UPDATE playlists
 SET nombre = 'Playlist de Juan'
 WHERE id = 1 ;
 
@@ -140,7 +140,7 @@ WHERE nombre='Michael Jackson';
 
 UPDATE albumes
 SET nombre_album='The best pop music'
-WHERE nombre='Thriller';
+WHERE nombre_album='Thriller';
 
 --modificacion comentarios
 UPDATE comentarios
