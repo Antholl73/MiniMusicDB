@@ -170,7 +170,8 @@ INSERT INTO reproducciones(id,id_cancion,id_usuario,estado,tiempo_actual) VALUES
 ('repro-006',6,6,TRUE,1.8),
 ('repro-007',7,7,FALSE,3.0),
 ('repro-008',8,8,TRUE,2.2);
---agregando mas playlist
+
+
 INSERT INTO playlists (tipo,nombre,descripcion) VALUES
 ('favoritos','Favoritas de Sofia','Mis canciones favoritas'),
 ('personalizada','Rock clásico','Solo rock'),
@@ -178,6 +179,14 @@ INSERT INTO playlists (tipo,nombre,descripcion) VALUES
 ('por_decadas','Hits 2000','Lo mejor de los 2000'),
 ('favoritos','Top pop','Mis favoritas de pop'),
 ('personalizada','Modo estudio','Música tranquila');
+--agregando detalles_playlist
+INSERT INTO detalles_playlist(id_playlist,id_cancion,posicion) VALUES
+(2,3,1),
+(2,4,2),
+(3,5,1),
+(4,6,1),
+(5,7,1),
+(6,8,1);
 
 --Modificacion
 
