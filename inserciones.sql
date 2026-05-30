@@ -101,7 +101,12 @@ INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
 VALUES (1, 2, 2);
 
 
-
+--agregando Más datos a discograficas
+INSERT INTO discograficas (nombre) VALUES
+('Warner Music'),
+('EMI Records'),
+('Atlantic Records'),
+('Columbia Records');
 
 
 --Modificacion
