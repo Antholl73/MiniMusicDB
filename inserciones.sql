@@ -100,6 +100,10 @@ VALUES (1, 1, 1);
 INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
 VALUES (1, 2, 2);
 
+
+
+
+
 --Modificacion
 
 --modificacion playlist
