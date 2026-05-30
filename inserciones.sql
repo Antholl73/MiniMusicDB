@@ -121,12 +121,16 @@ INSERT INTO generos (nombre) VALUES
 ('Electrónica'),
 ('Jazz'),
 ('Hip Hop');
---agregando mas idiomas
+
 INSERT INTO idiomas (nombre) VALUES
 ('Japonés'),
 ('Italiano'),
 ('Alemán');
-
+--agregando mas artistas
+INSERT INTO artistas (nombre) VALUES
+('Linkin Park'),
+('Coldplay'),
+('Adele');
 --Modificacion
 
 --modificacion playlist
