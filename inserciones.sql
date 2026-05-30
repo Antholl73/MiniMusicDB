@@ -101,13 +101,20 @@ INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
 VALUES (1, 2, 2);
 
 
---agregando Más datos a discograficas
+
 INSERT INTO discograficas (nombre) VALUES
 ('Warner Music'),
 ('EMI Records'),
 ('Atlantic Records'),
 ('Columbia Records');
 
+--agregando usuarios
+
+INSERT INTO usuarios (correo, nombre) VALUES
+('sofia_music99@gmail.com', 'Sofia'),
+('pedrorock@gmail.com', 'Pedro'),
+('lucia_pop@gmail.com', 'Lucia'),
+('diego_metal@gmail.com', 'Diego');
 
 --Modificacion
 
