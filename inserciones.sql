@@ -116,11 +116,17 @@ INSERT INTO usuarios (correo, nombre) VALUES
 ('lucia_pop@gmail.com', 'Lucia'),
 ('diego_metal@gmail.com', 'Diego');
 
---agregando mas generos
+
 INSERT INTO generos (nombre) VALUES
 ('Electrónica'),
 ('Jazz'),
 ('Hip Hop');
+--agregando mas idiomas
+INSERT INTO idiomas (nombre) VALUES
+('Japonés'),
+('Italiano'),
+('Alemán');
+
 --Modificacion
 
 --modificacion playlist
