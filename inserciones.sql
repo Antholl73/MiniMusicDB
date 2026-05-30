@@ -126,11 +126,21 @@ INSERT INTO idiomas (nombre) VALUES
 ('Japonés'),
 ('Italiano'),
 ('Alemán');
---agregando mas artistas
+
 INSERT INTO artistas (nombre) VALUES
 ('Linkin Park'),
 ('Coldplay'),
 ('Adele');
+
+--agregando mas albumes
+INSERT INTO albumes(id, id_artista, id_discografica, nombre_album, fecha_lanzamiento) VALUES
+(5,5,5,'Mutter','2001-04-02'),
+(6,6,6,'Hybrid Theory','2000-10-24'),
+(7,7,7,'Parachutes','2000-07-10'),
+(8,8,8,'21','2011-01-24');
+
+
+
 --Modificacion
 
 --modificacion playlist
