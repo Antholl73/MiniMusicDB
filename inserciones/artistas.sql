@@ -1,11 +1,16 @@
-INSERT INTO artistas (nombre) VALUES
+INSERT INTO artistas (nombre)
+VALUES
 ('Gorillaz'),
 ('Michael Jackson'),
 ('Metallica'),
 ('Dua Lipa'),
-('Rammstein');
-
-INSERT INTO artistas (nombre) VALUES
+('Rammstein'),
 ('Linkin Park'),
 ('Coldplay'),
-('Adele');
+('Adele'),
+('Bruno Mars'),
+('Eminem'),
+('Shakira'),
+('Daft Punk'),
+('Billie Eilish'),
+('Marc Anthony');

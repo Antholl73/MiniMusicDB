@@ -1,11 +1,14 @@
-INSERT INTO idiomas (nombre) VALUES
+INSERT INTO idiomas (nombre)
+VALUES
 ('Español'),
 ('Inglés'),
 ('Portugués'),
 ('Francés'),
-('Coreano');
-
-INSERT INTO idiomas (nombre) VALUES
+('Coreano'),
 ('Japonés'),
 ('Italiano'),
-('Alemán');
+('Alemán'),
+('Chino'),
+('Ruso'),
+('Sueco'),
+('Latín');

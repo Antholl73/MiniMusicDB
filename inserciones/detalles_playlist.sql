@@ -1,13 +1,19 @@
 INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
-VALUES (1, 1, 1);
-
-INSERT INTO detalles_playlist(id_playlist, id_cancion, posicion)
-VALUES (1, 2, 2);
-
-INSERT INTO detalles_playlist(id_playlist,id_cancion,posicion) VALUES
-(2,3,1),
-(2,4,2),
-(3,5,1),
-(4,6,1),
-(5,7,1),
-(6,8,1);
+VALUES
+(1, 1, 1),
+(1, 2, 2),
+(2, 3, 1),
+(2, 4, 2),
+(3, 5, 1),
+(4, 6, 1),
+(5, 7, 1),
+(6, 8, 1),
+(7, 3, 1),
+(7, 4, 2),
+(7, 8, 3),
+(8, 12, 1),
+(8, 13, 2),
+(9, 11, 1),
+(10, 10, 1),
+(10, 6, 2),
+(11, 14, 1);

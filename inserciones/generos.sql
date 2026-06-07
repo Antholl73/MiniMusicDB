@@ -1,11 +1,16 @@
-INSERT INTO generos (nombre) VALUES
+INSERT INTO generos (nombre)
+VALUES
 ('Salsa'),
 ('Reggaeton'),
 ('Pop'),
 ('Rock'),
-('Metal');
-
-INSERT INTO generos (nombre) VALUES
+('Metal'),
 ('Electrónica'),
 ('Jazz'),
-('Hip Hop');
+('Hip Hop'),
+('Bachata'),
+('K-pop'),
+('Clásica'),
+('Trap'),
+('House'),
+('Reggae');
