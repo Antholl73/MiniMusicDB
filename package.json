@@ -1,0 +1,26 @@
+{
+  "name": "minimusicdb",
+  "version": "1.0.0",
+  "description": "- Aviles Fuentes Anthony Francisco (Antholl73) - Coaquira Llave Dayron Giovani (Day-Llave) - Rodrigo Renato Gamero Bocangel (RGBdotcom, rodrigogamerobocangel-byte) - Ortiz Molina Fabian Marcelo (fabian0rtiz)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antholl73/MiniMusicDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Antholl73/MiniMusicDB/issues"
+  },
+  "homepage": "https://github.com/Antholl73/MiniMusicDB#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
+  }
+}
