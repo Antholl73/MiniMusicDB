@@ -57,7 +57,7 @@
     const id = document.getElementById('idGenero').value;
 
     if (!id) {
-        alert("Ingrese un ID de género");
+        Toastify({text:"Ingrese genero!", duration:3000, style: {background:"black"}, position: "right" }).showToast();
         return;
     }
 
