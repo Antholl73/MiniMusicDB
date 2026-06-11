@@ -114,6 +114,10 @@ async function verUsuarios() {
   document.getElementById('usuarios').textContent =
     `Total de Usuarios: ${data.data.total_usuarios}`;
 }
+function descargarGenerosCSV() {
+    window.location.href =
+        '/api/reportes/total-canciones-por-genero/csv';
+}
         
 
     </script>
@@ -136,7 +140,11 @@ async function verUsuarios() {
     placeholder="Contenido de la letra"
     rows="5"
     cols="50"></textarea>
-
+    <button onclick="agregarCancion()">
+    Agregar Canción
+</button>
+<h3>Resultado inserción</h3>
+<pre id="resultadoInsercion"></pre>
 <br><br>
 <hr>
 <h2>Total de canciones</h2>
@@ -152,6 +160,11 @@ async function verUsuarios() {
 <h2>Total de usuarios</h2>
 <button onclick="verUsuarios()">Ver</button>
 <pre id="usuarios"></pre>
+<hr>
+<h2>Total de canciones por genero</h2>
+<button onclick="descargarGenerosCSV()">
+    Descargar CSV
+</button>
 <hr>
 
 
