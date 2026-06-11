@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static('public'));
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
@@ -39,6 +39,7 @@ app.get('/api/db-test', async (req, res) => {
 // Canciones del genero 3 con calificacion promedio >= 3
 app.get('/api/canciones/genero/:id_genero/bien-calificadas', async (req, res) => {
   const { id_genero } = req.params;
+  
   try {
     const result = await pool.query(`
       SELECT
@@ -113,6 +114,8 @@ app.post('/api/canciones', async (req, res) => {
     id_idioma,
     contenido
   } = req.body;
+
+  
 
   // Validación de campos obligatorios para canción y letra
   if (
@@ -195,6 +198,28 @@ app.post('/api/canciones', async (req, res) => {
   } finally {
     client.release();
   }
+});
+
+
+// Total de canciones
+app.get('/api/cantidad-canciones', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT COUNT(*) AS total_canciones
+            FROM canciones
+        `);
+
+        res.json({
+            ok: true,
+            total_canciones: result.rows[0].total_canciones
+        });
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            error: error.message
+        });
+    }
+    
 });
 
 const PORT = process.env.PORT || 3000;

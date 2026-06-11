@@ -1,0 +1,1 @@
+Select count(*) as total_canciones from canciones;

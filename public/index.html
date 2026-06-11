@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MiniMusicDB</title>
+</head>
+<body>
+
+    <h1>MiniMusicDB</h1>
+
+    <button onclick="probarAPI()">
+        Probar API
+    </button>
+
+    <pre id="resultado"></pre>
+
+    <hr>
+
+    <h2>Canciones bien calificadas por género</h2>
+
+    <input
+        type="number"
+        id="idGenero"
+        placeholder="Ingrese ID del género">
+
+    <button onclick="buscarCanciones()">
+        Buscar
+    </button>
+
+    <pre id="resultadoCanciones"></pre>
+
+    <hr>
+
+    <h2>Reporte de reproducciones por género</h2>
+
+    <button onclick="verReproducciones()">
+        Ver reporte
+    </button>
+
+    <pre id="resultadoReproducciones"></pre>
+
+    <script>
+
+        async function probarAPI() {
+            const respuesta = await fetch('/api/db-test');
+            const datos = await respuesta.json();
+
+            document.getElementById('resultado').textContent =
+                JSON.stringify(datos, null, 2);
+        }
+
+        async function buscarCanciones() {
+            const id = document.getElementById('idGenero').value;
+
+            const respuesta = await fetch(
+                `/api/canciones/genero/${id}/bien-calificadas`
+            );
+
+            const datos = await respuesta.json();
+
+            document.getElementById('resultadoCanciones').textContent =
+                JSON.stringify(datos, null, 2);
+        }
+
+        async function verReproducciones() {
+            const respuesta = await fetch(
+                '/api/generos/reproducciones'
+            );
+
+            const datos = await respuesta.json();
+
+            document.getElementById('resultadoReproducciones').textContent =
+                JSON.stringify(datos, null, 2);
+        }
+        async function agregarCancion() {
+    const body = {
+        id_album: Number(document.getElementById('idAlbum').value),
+        id_artista: Number(document.getElementById('idArtista').value),
+        id_genero: Number(document.getElementById('idGeneroCancion').value),
+        nombre: document.getElementById('nombreCancion').value,
+        duracion: Number(document.getElementById('duracionCancion').value),
+        id_idioma: Number(document.getElementById('idIdioma').value),
+        contenido: document.getElementById('contenidoLetra').value
+    };
+
+    const respuesta = await fetch('/api/canciones', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+
+    const datos = await respuesta.json();
+
+    document.getElementById('resultadoInsercion').textContent =
+        JSON.stringify(datos, null, 2);
+}
+async function verTotalCanciones() {
+
+    const respuesta = await fetch('/api/cantidad-canciones');
+
+    const datos = await respuesta.json();
+
+    document.getElementById('resultadoTotal').textContent =
+        `Total de canciones: ${datos.total_canciones}`;
+}
+        
+
+    </script>
+    <hr>
+
+<h2>Agregar Canción</h2>
+
+<input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
+<input type="number" id="idArtista" placeholder="ID Artista"><br><br>
+<input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
+
+<input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
+
+<input type="number" id="duracionCancion" placeholder="Duración"><br><br>
+
+<input type="number" id="idIdioma" placeholder="ID Idioma"><br><br>
+
+<textarea
+    id="contenidoLetra"
+    placeholder="Contenido de la letra"
+    rows="5"
+    cols="50"></textarea>
+
+<br><br>
+<hr>
+<h2>Total de canciones</h2>
+
+<button onclick="verTotalCanciones()">
+    Ver total
+</button>
+
+
+<pre id="resultadoTotal"></pre>
+<hr>
+</body>
+</html>
