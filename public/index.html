@@ -42,6 +42,10 @@
     <pre id="resultadoReproducciones"></pre>
 
     <script>
+
+
+
+
         function descargarReproduccionesCSV() {
     window.location.href = '/api/generos/reproducciones/csv';
 }
@@ -103,6 +107,13 @@ async function verTotalCanciones() {
     document.getElementById('resultadoTotal').textContent =
         `Total de canciones: ${datos.total_canciones}`;
 }
+async function verUsuarios() {
+  const res = await fetch('/api/reportes/total-usuarios');
+  const data = await res.json();
+
+  document.getElementById('usuarios').textContent =
+    `Total de Usuarios: ${data.data.total_usuarios}`;
+}
         
 
     </script>
@@ -131,11 +142,18 @@ async function verTotalCanciones() {
 <h2>Total de canciones</h2>
 
 <button onclick="verTotalCanciones()">
-    Ver total
+    Ver 
 </button>
 
 
 <pre id="resultadoTotal"></pre>
 <hr>
+
+<h2>Total de usuarios</h2>
+<button onclick="verUsuarios()">Ver</button>
+<pre id="usuarios"></pre>
+<hr>
+
+
 </body>
 </html>

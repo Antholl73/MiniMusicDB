@@ -236,6 +236,26 @@ app.get('/api/cantidad-canciones', async (req, res) => {
     }
     
 });
+//total de usuarios
+app.get('/api/reportes/total-usuarios', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT COUNT(*) AS total_usuarios
+      FROM usuarios
+    `);
+
+    res.json({
+      ok: true,
+      data: result.rows[0]
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message
+    });
+  }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
