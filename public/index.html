@@ -118,6 +118,10 @@ function descargarGenerosCSV() {
     window.location.href =
         '/api/reportes/total-canciones-por-genero/csv';
 }
+function descargarCancionesPorAlbumCSV() {
+    window.location.href =
+        '/api/reportes/total-canciones-por-album/csv';
+}
         
 
     </script>
@@ -166,6 +170,11 @@ function descargarGenerosCSV() {
     Descargar CSV
 </button>
 <hr>
+<h2>Canciones por álbum</h2>
+
+<button onclick="descargarCancionesPorAlbumCSV()">
+    Descargar CSV
+</button>
 
 
 </body>
