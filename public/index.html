@@ -16,29 +16,48 @@
     <hr>
 
     <h2>Canciones bien calificadas por género</h2>
+    <button onclick="descargarCSV()">
+    Descargar CSV
+</button>
 
     <input
         type="number"
         id="idGenero"
         placeholder="Ingrese ID del género">
 
-    <button onclick="buscarCanciones()">
-        Buscar
-    </button>
+    
 
     <pre id="resultadoCanciones"></pre>
+    
 
     <hr>
 
     <h2>Reporte de reproducciones por género</h2>
+    <button onclick="descargarReproduccionesCSV()">
+    Descargar CSV
+</button>
 
-    <button onclick="verReproducciones()">
-        Ver reporte
-    </button>
+    
 
     <pre id="resultadoReproducciones"></pre>
 
     <script>
+        function descargarReproduccionesCSV() {
+    window.location.href = '/api/generos/reproducciones/csv';
+}
+
+
+        function descargarCSV() {
+    const id = document.getElementById('idGenero').value;
+
+    if (!id) {
+        alert("Ingrese un ID de género");
+        return;
+    }
+
+    window.location.href =
+        `/api/canciones/genero/${id}/bien-calificadas/csv`;
+}
 
         async function probarAPI() {
             const respuesta = await fetch('/api/db-test');
@@ -48,29 +67,9 @@
                 JSON.stringify(datos, null, 2);
         }
 
-        async function buscarCanciones() {
-            const id = document.getElementById('idGenero').value;
+        
 
-            const respuesta = await fetch(
-                `/api/canciones/genero/${id}/bien-calificadas`
-            );
-
-            const datos = await respuesta.json();
-
-            document.getElementById('resultadoCanciones').textContent =
-                JSON.stringify(datos, null, 2);
-        }
-
-        async function verReproducciones() {
-            const respuesta = await fetch(
-                '/api/generos/reproducciones'
-            );
-
-            const datos = await respuesta.json();
-
-            document.getElementById('resultadoReproducciones').textContent =
-                JSON.stringify(datos, null, 2);
-        }
+       
         async function agregarCancion() {
     const body = {
         id_album: Number(document.getElementById('idAlbum').value),
