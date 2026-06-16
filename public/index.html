@@ -124,6 +124,9 @@ function descargarCancionesPorAlbumCSV() {
     window.location.href =
         '/api/reportes/total-canciones-por-album/csv';
 }
+async function verTotalTablas() {
+    window.open('/api/total-tablas', '_blank');
+}
         
 
     </script>
@@ -178,7 +181,7 @@ function descargarCancionesPorAlbumCSV() {
     Descargar CSV
 </button>
 
- <button onclick="mostrarTablasBrowser()">
+ <button onclick="verTotalTablas()">
     Ver tablas
  </button>
  
