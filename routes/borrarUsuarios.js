@@ -4,7 +4,7 @@ const pool = require('../dataBase');
 
 router.get('/api/borrarUsuarios', async (req, res) => {
   try {
-    await pool.query(`
+    const result = await pool.query(`
       DELETE FROM usuarios
       WHERE id > 12
     `);
@@ -18,7 +18,8 @@ router.get('/api/borrarUsuarios', async (req, res) => {
     `);
 
     res.json({
-      mensaje: 'Usuarios de prueba eliminados'
+      mensaje: 'Usuarios de prueba eliminados:',
+      eliminados: result.rowCount
     });
 
   } catch (error) {
