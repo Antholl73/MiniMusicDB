@@ -1,18 +1,14 @@
 // Archivo: server.js
 const express = require('express');
-const { Pool } = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 
+const pool = require('./dataBase');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
 
 app.get('/', (req, res) => {
   res.json({ mensaje: 'MiniMusicDB API corriendo' });
@@ -321,7 +317,7 @@ app.get('/api/reportes/total-canciones-por-album/csv', async (req, res) => {
   }
 });
 
-const rutasTablas = require('./routes/tablas');
+const rutaTablas = require('./routes/tablas');
 
 app.use('/api/total-tablas', rutaTablas);
 
