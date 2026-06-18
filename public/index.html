@@ -173,6 +173,57 @@ async function explainUsuarios() {
             `Error: ${error.message}`;
     }
 }
+
+async function generarHistoriales() {
+    try {
+        const respuesta = await fetch(
+            '/api/generarHistoriales/1000'
+        );
+
+        const datos = await respuesta.json();
+
+	document.getElementById('resultadoGeneracionHistoriales').textContent =
+  	  `Insertados: ${datos.insertados}`;
+
+    } catch (error) {
+        document.getElementById('resultadoGeneracionHistoriales').textContent =
+            `Error: ${error.message}`;
+    }
+}
+
+async function borrarHistoriales() {
+    try {
+        const respuesta = await fetch(
+            '/api/borrarHistoriales'
+        );
+
+        const datos = await respuesta.json();
+
+	document.getElementById('resultadoBorradoHistoriales').textContent =
+  	  `${datos.mensaje} Eliminados: ${datos.eliminados}`;
+
+    } catch (error) {
+        document.getElementById('resultadoBorradoHistoriales').textContent =
+            `Error: ${error.message}`;
+    }
+}
+
+async function explainHistoriales() {
+    try {
+        const respuesta = await fetch(
+            '/api/explainHistoriales/3'
+        );
+
+        const datos = await respuesta.json();
+
+        document.getElementById('resultadoExplainHistoriales').textContent =
+            JSON.stringify(datos, null, 2);
+
+    } catch (error) {
+        document.getElementById('resultadoExplainHistoriales').textContent =
+            `Error: ${error.message}`;
+    }
+}
         
 
     </script>
@@ -255,7 +306,31 @@ async function explainUsuarios() {
 
 <pre id="resultadoExplain"></pre>
 <hr>
- 
+
+
+<h2>Poblar tabla Historiales</h2>
+ <button onclick="generarHistoriales()">
+    Intenta generar 1000 registros de prueba dentro de la tabla Historiales.
+ </button>
+
+<p id="resultadoGeneracionHistoriales"></p>
+<hr>
+
+<h2>Vaciar tabla Historiales</h2>
+ <button onclick="borrarHistoriales()">
+    Elimina todos los registros dentro de la tabla Historiales.
+ </button>
+
+<p id="resultadoBorradoHistoriales"></p>
+<hr>
+
+<h2>Analisis de consulta en tabla Historiales</h2>
+ <button onclick="explainHistoriales()">
+    Ejecutar EXPLAIN ANALYZE de canciones del usuario 3 en un periodo de tiempo especifico, en la tabla Historiales.
+ </button>
+
+<pre id="resultadoExplainHistoriales"></pre>
+<hr>
 
 <div id="toast-container"></div>
 <script src="toasts.js"></script>
