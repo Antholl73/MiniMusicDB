@@ -1,11 +1,11 @@
 CREATE TABLE reproducciones(
-id VARCHAR(50), -- REVIEW: verificar si esto deberia ser integer
+n_reproduccion INTEGER, -- FIX: integer, y renombramiento para mostrar la funcion
 id_cancion INTEGER,
 id_usuario INTEGER,
 estado BOOLEAN NOT NULL,
-tiempo_actual REAL CHECK (tiempo_actual >= 0),
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-PRIMARY KEY(id, id_cancion, id_usuario),
+PRIMARY KEY(n_reproduccion, id_cancion, id_usuario),
 
 CONSTRAINT fk_usuario_reproduccion
 FOREIGN KEY(id_usuario)
