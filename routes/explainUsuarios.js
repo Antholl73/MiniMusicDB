@@ -10,7 +10,7 @@ router.get('/api/explainUsuarios/:email', async (req, res) => {
       EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON)
       SELECT *
       FROM usuarios
-      WHERE email = $1
+      WHERE correo = $1
     `, [email]);
 
     res.json(result.rows[0]);
