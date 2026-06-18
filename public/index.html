@@ -267,6 +267,32 @@ async function borrarIndiceHistoriales() {
         ).textContent = `Error: ${error.message}`;
     }
 }
+async function crearPlaylist() {
+
+    const nombre = document.getElementById('nombrePlaylist').value;
+
+    const canciones = document
+        .getElementById('cancionesPlaylist')
+        .value
+        .split(',')
+        .map(id => Number(id.trim()));
+
+    const respuesta = await fetch('/api/playlists/crear', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nombre,
+            canciones
+        })
+    });
+
+    const datos = await respuesta.json();
+
+    document.getElementById('resultadoPlaylist').textContent =
+        JSON.stringify(datos, null, 2);
+}
         
 
     </script>
@@ -394,5 +420,31 @@ async function borrarIndiceHistoriales() {
 
 <div id="toast-container"></div>
 <script src="toasts.js"></script>
+
+
+
+
+
+<h2>Crear Playlist (Transacción ACID)</h2>
+
+<input
+    type="text"
+    id="nombrePlaylist"
+    placeholder="Nombre de la playlist">
+
+<br><br>
+
+<input
+    type="text"
+    id="cancionesPlaylist"
+    placeholder="IDs de canciones(1,2,3)">
+
+<br><br>
+
+<button onclick="crearPlaylist()">
+    Crear Playlist
+</button>
+
+<pre id="resultadoPlaylist"></pre>
 </body>
 </html>
