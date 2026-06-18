@@ -321,6 +321,10 @@ app.get('/api/reportes/total-canciones-por-album/csv', async (req, res) => {
   }
 });
 
+const rutasTablas = require('./routes/tablas');
+
+app.use('/api/total-tablas', rutaTablas);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
