@@ -12,16 +12,20 @@ router.get('/api/generarUsuarios/:cantidad', async (req, res) => {
       });
     }
 
-    await pool.query(`
-      INSERT INTO usuarios (nombre, email, edad)
-      SELECT
-        'Usuario ' || i,
-        'usuario' || i || '@test.com',
-        (random() * 80)::int + 10
-      FROM generate_series(1, $1) AS i
-    `, [cantidad]);
+const result = await pool.query(`
+  INSERT INTO usuarios (nombre, correo)
+  SELECT
+    'Usuario ' || (12+i),
+    'usuario' || (12 + i) || '@test.com'
+  FROM generate_series(1, $1) AS i
+  ON CONFLICT (correo) DO NOTHING
+`, [cantidad]);
 
-    res.json({ mensaje: `${cantidad} usuarios creados` });
+    console.log(result.rowCount);
+
+    res.json({
+      insertados: result.rowCount
+    });
 
   } catch (error) {
     console.error(error);
@@ -32,5 +36,3 @@ router.get('/api/generarUsuarios/:cantidad', async (req, res) => {
 });
 
 module.exports = router;
-
-
