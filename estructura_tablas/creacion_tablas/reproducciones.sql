@@ -1,17 +1,15 @@
 CREATE TABLE reproducciones(
-n_reproduccion INTEGER, -- FIX: integer, y renombramiento para mostrar la funcion
-id_cancion INTEGER,
-id_usuario INTEGER,
-estado BOOLEAN NOT NULL,
-fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_usuario INTEGER,
+    id_cancion INTEGER,
+    estado BOOLEAN NOT NULL,
+    tiempo_actual INTEGER CHECK (tiempo_actual >= 0),
 
-PRIMARY KEY(n_reproduccion, id_cancion, id_usuario),
+    PRIMARY KEY(id_usuario, id_cancion),
 
-CONSTRAINT fk_usuario_reproduccion
-FOREIGN KEY(id_usuario)
-REFERENCES usuarios(id),
-
-CONSTRAINT fk_cancion_reproduccion
-FOREIGN KEY(id_cancion)
-REFERENCES canciones(id)
+CONSTRAINT fk_usuario_reproducciones
+    FOREIGN KEY(id_usuario)
+    REFERENCES usuarios(id),
+CONSTRAINT fk_cancion_reproducciones
+    FOREIGN KEY(id_cancion)
+    REFERENCES canciones(id)
 );
