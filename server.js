@@ -328,6 +328,8 @@ app.use(require('./routes/generarHistoriales'));
 app.use(require('./routes/explainHistoriales'));
 app.use(require('./routes/borrarHistoriales'));
 
+app.use(require('./routes/crearIndiceHistoriales'));
+app.use(require('./routes/borrarIndiceHistoriales'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

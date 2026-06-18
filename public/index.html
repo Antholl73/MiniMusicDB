@@ -129,7 +129,7 @@ async function verTotalTablas() {
 }
 async function generarUsuarios() {
     try {
-        const respuesta = await fetch('/api/generarUsuarios/1000');
+        const respuesta = await fetch('/api/generarUsuarios/6000');
 
         const datos = await respuesta.json();
 
@@ -151,6 +151,9 @@ async function borrarUsuarios() {
         document.getElementById('resultado').textContent =
             datos.mensaje;
 
+	document.getElementById('resultadoBorrarUsuarios').textContent =
+  	  `Eliminados: ${datos.eliminados} registros`;
+
     } catch (error) {
         document.getElementById('resultado').textContent =
             `Error: ${error.message}`;
@@ -166,7 +169,7 @@ async function explainUsuarios() {
         const datos = await respuesta.json();
 
         document.getElementById('resultadoExplain').textContent =
-            JSON.stringify(datos, null, 2);
+            datos.map(fila => fila["QUERY PLAN"]).join("\n");
 
     } catch (error) {
         document.getElementById('resultadoExplain').textContent =
@@ -216,12 +219,52 @@ async function explainHistoriales() {
 
         const datos = await respuesta.json();
 
-        document.getElementById('resultadoExplainHistoriales').textContent =
-            JSON.stringify(datos, null, 2);
+        document.getElementById(
+            'resultadoExplainHistoriales'
+        ).textContent =
+            datos.map(fila => fila["QUERY PLAN"]).join("\n");
 
     } catch (error) {
-        document.getElementById('resultadoExplainHistoriales').textContent =
+        document.getElementById(
+            'resultadoExplainHistoriales'
+        ).textContent =
             `Error: ${error.message}`;
+    }
+}
+
+async function crearIndiceHistoriales() {
+    try {
+        const respuesta = await fetch('/api/crearIndiceHistoriales');
+
+        const datos = await respuesta.json();
+
+        document.getElementById(
+            'resultadoCrearIndiceHistoriales'
+        ).textContent = datos.mensaje;
+
+    } catch (error) {
+        document.getElementById(
+            'resultadoCrearIndiceHistoriales'
+        ).textContent = `Error: ${error.message}`;
+    }
+}
+
+async function borrarIndiceHistoriales() {
+    try {
+        const respuesta = await fetch(
+            '/api/borrarIndiceHistoriales'
+        );
+
+        const datos = await respuesta.json();
+
+        document.getElementById(
+            'resultadoBorrarIndiceHistoriales'
+        ).textContent = datos.mensaje;
+
+    } catch (error) {
+        document.getElementById(
+            'resultadoBorrarIndiceHistoriales'
+        ).textContent = `Error: ${error.message}`;
     }
 }
         
@@ -287,7 +330,7 @@ async function explainHistoriales() {
 
 <h2>Poblar tabla Usuarios</h2>
  <button onclick="generarUsuarios()">
-    Genera 1000 registros de prueba dentro de la tabla Usuarios.
+    Genera hasta 6000 registros de prueba de id > 12 dentro de la tabla Usuarios.
  </button>
 
 <p id="resultadoGeneracion"></p>
@@ -295,8 +338,10 @@ async function explainHistoriales() {
 
 <h2>Vaciar tabla Usuarios</h2>
  <button onclick="borrarUsuarios()">
-    Elimina todos los registros dentro de la tabla Usuarios.
+    Elimina todos los registros de id > 12 dentro de la tabla Usuarios.
  </button>
+
+<p id="resultadoBorrarUsuarios"></p>
 <hr>
 
 <h2>Analisis de consulta en tabla Usuarios</h2>
@@ -330,6 +375,21 @@ async function explainHistoriales() {
  </button>
 
 <pre id="resultadoExplainHistoriales"></pre>
+<hr>
+
+<h2>Índice de Historiales</h2>
+
+<button onclick="crearIndiceHistoriales()">
+    Crear índice compuesto (id_usuario, fecha)
+</button>
+
+<p id="resultadoCrearIndiceHistoriales"></p>
+
+<button onclick="borrarIndiceHistoriales()">
+    Eliminar índice compuesto (id_usuario, fecha)
+</button>
+
+<p id="resultadoBorrarIndiceHistoriales"></p>
 <hr>
 
 <div id="toast-container"></div>
