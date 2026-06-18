@@ -127,6 +127,52 @@ function descargarCancionesPorAlbumCSV() {
 async function verTotalTablas() {
     window.open('/api/total-tablas', '_blank');
 }
+async function generarUsuarios() {
+    try {
+        const respuesta = await fetch('/api/generarUsuarios/1000');
+
+        const datos = await respuesta.json();
+
+        document.getElementById('resultadoGeneracion').textContent =
+            `Insertados: ${datos.insertados}`;
+
+    } catch (error) {
+        document.getElementById('resultadoGeneracion').textContent =
+            `Error: ${error.message}`;
+    }
+}
+
+async function borrarUsuarios() {
+    try {
+        const respuesta = await fetch('/api/borrarUsuarios');
+
+        const datos = await respuesta.json();
+
+        document.getElementById('resultado').textContent =
+            datos.mensaje;
+
+    } catch (error) {
+        document.getElementById('resultado').textContent =
+            `Error: ${error.message}`;
+    }
+}
+
+async function explainUsuarios() {
+    try {
+        const respuesta = await fetch(
+            '/api/explainUsuarios/usuario500@test.com'
+        );
+
+        const datos = await respuesta.json();
+
+        document.getElementById('resultadoExplain').textContent =
+            JSON.stringify(datos, null, 2);
+
+    } catch (error) {
+        document.getElementById('resultadoExplain').textContent =
+            `Error: ${error.message}`;
+    }
+}
         
 
     </script>
@@ -186,6 +232,28 @@ async function verTotalTablas() {
  <button onclick="verTotalTablas()">
     Ver tablas
  </button>
+<hr>
+
+<h2>Poblar tabla Usuarios</h2>
+ <button onclick="generarUsuarios()">
+    Genera 1000 registros de prueba dentro de la tabla Usuarios.
+ </button>
+
+<p id="resultadoGeneracion"></p>
+<hr>
+
+<h2>Vaciar tabla Usuarios</h2>
+ <button onclick="borrarUsuarios()">
+    Elimina todos los registros dentro de la tabla Usuarios.
+ </button>
+<hr>
+
+<h2>Analisis de consulta en tabla Usuarios</h2>
+ <button onclick="explainUsuarios()">
+    Ejecutar EXPLAIN ANALYZE de correo (usuario500@test.com) en Usuarios.
+ </button>
+
+<pre id="resultadoExplain"></pre>
 <hr>
  
 
