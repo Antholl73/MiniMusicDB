@@ -318,8 +318,11 @@ app.get('/api/reportes/total-canciones-por-album/csv', async (req, res) => {
 });
 
 const rutaTablas = require('./routes/tablas');
-
 app.use('/api/total-tablas', rutaTablas);
+
+app.use(require('./routes/generarUsuarios'));
+app.use(require('./routes/explainUsuarios'));
+app.use(require('./routes/borrarUsuarios'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
