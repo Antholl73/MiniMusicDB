@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 
     for (const row of tables.rows) {
       const tabla = row.table_name;
-      const data = await pool.query(`SELECT * FROM "${tabla}"`);
+      const data = await pool.query(`SELECT * FROM "${tabla}" ORDER BY 1`);
       const filas = data.rows;
       const columnas = filas.length > 0 ? Object.keys(filas[0]) : [];
 
