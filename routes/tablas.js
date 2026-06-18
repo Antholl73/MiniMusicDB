@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
         </style>
       </head>
       <body>
-      <h1>📦 Base de datos</h1>
+      <h1>Base de Datos "MiniMusicDB" --- Informacion de Tablas</h1>
     `;
 
     for (const row of tables.rows) {
@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
       const filas = data.rows;
       const columnas = filas.length > 0 ? Object.keys(filas[0]) : [];
 
-      html += `<h2>📋 ${tabla}</h2>`;
+      html += `<h2>Tabla: ${tabla}</h2>`;
       html += `<p class="count">${filas.length} filas</p>`;
 
       if (filas.length === 0) {
