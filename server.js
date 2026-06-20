@@ -364,6 +364,14 @@ app.post('/api/playlists/crear', async (req, res) => {
   }
 });
 
+// ============================================================
+// TRANSACCIÓN ACID: Registrar reproducción completa de una canción
+// ============================================================
+// Proceso crítico: los 2 pasos son atómicos. Si alguno falla,
+// se hace ROLLBACK y ninguna tabla queda modificada.
+//
+// Body esperado: { id_usuario, id_cancion, tiempo_actual }
+// ============================================================
 app.post('/api/reproducciones/registrar', async (req, res) => {
   const { id_usuario, id_cancion, tiempo_actual } = req.body;
 
@@ -410,15 +418,7 @@ app.post('/api/reproducciones/registrar', async (req, res) => {
       )
     `, [id_usuario, id_cancion]);
 
-    // PASO 3: Insertar calificacion inicial (0 estrellas) solo si el usuario
-    // aun no ha calificado esta cancion. Si ya existe, no se hace nada.
-    await client.query(`
-      INSERT INTO calificaciones (id_usuario, id_cancion, valoracion)
-      VALUES ($1, $2, 0)
-      ON CONFLICT (id_usuario, id_cancion) DO NOTHING
-    `, [id_usuario, id_cancion]);
-
-    // Los 3 pasos salieron bien: confirmar todo como una unidad atomica.
+    // Los 2 pasos salieron bien: confirmar todo como una unidad atomica.
     await client.query('COMMIT');
 
     res.status(201).json({
