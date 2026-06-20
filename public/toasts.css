@@ -82,8 +82,24 @@
   cursor: pointer;
 }
 
+.toast-msg {
+  font-size: 13px;
+  color: #090e1a;
+}
+
+.toast-title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #111;
+}
+
+.toast-close {
+  color: #9ca3af;
+}
+
 /* ── circulo para loading ── */
 .toast .spinner {
+  display: block;
   width: 18px;
   height: 18px;
   border: 2px solid #e5e7eb;
