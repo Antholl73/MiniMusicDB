@@ -1,0 +1,74 @@
+:root{
+
+    --color_fondo: #121214;
+    --color_tarjeta: #1a1a1e;
+    --color_borde: #29292e;
+    --color_texto: #e1e1e6;
+    --color_atenuado_texto: #a8a8b3;
+    --color_primario: #4f46e5;
+    --color_secundario: #00b37e;
+    --color_exito: #04d361;
+    --color_primario_hover: #4338ca;
+
+}
+
+*{
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+
+}
+
+body{
+
+    background-color: var(--color_fondo);
+    color: var(--color_texto);
+    padding: 2rem;
+    line-height: 1.5;
+
+}
+
+header{
+
+    max-width: 1200px;
+    margin :0 auto 2rem auto;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color_borde);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+h1{
+
+    font-size: 2rem;
+
+}
+
+h2{
+
+    font-size: 1.5rem;
+    margin-bottom:1rem;
+    border-left: 4px solid var(--color_primario);
+    padding-left: 10px;
+
+}
+
+h3{
+
+    font-size: 1rem;
+    color: var(--color_atenuado_texto);
+    margin-bottom: 1rem;
+
+}
+
+.card{
+    background:var(--color_tarjeta);
+    border:1px solid var(--color_borde);
+    border-radius: 8px;
+    padding:1.5rem;
+
+}

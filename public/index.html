@@ -1,450 +1,337 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
- <title>MiniMusicDB</title>
- <link rel="stylesheet" href="toasts.css">
+    <meta charset="UTF-8">
+    <title>MiniMusicDB</title>
+    <link rel="stylesheet" href="toasts.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header>
 
-    <h1>MiniMusicDB</h1>
+        <h1>MiniMusicDB</h1>
+        <button onclick="probarAPI()">Probar API</button>
+        <pre id="resultado"></pre>
 
-    <button onclick="probarAPI()">
-        Probar API
-    </button>
-
-    <pre id="resultado"></pre>
-
-    <hr>
+    </header>
 
     <h2>Canciones bien calificadas por género</h2>
     <button onclick="descargarCSV()">
-    Descargar CSV
-</button>
+        Descargar CSV
+    </button>
 
     <input
-        type="number"
-        id="idGenero"
-        placeholder="Ingrese ID del género">
-
-    
+    type="number"
+    id="idGenero"
+    placeholder="Ingrese ID del género">
 
     <pre id="resultadoCanciones"></pre>
-    
 
     <hr>
 
     <h2>Reporte de reproducciones por género</h2>
     <button onclick="descargarReproduccionesCSV()">
-    Descargar CSV
-</button>
-
-    
+        Descargar CSV
+    </button>
 
     <pre id="resultadoReproducciones"></pre>
 
+    <hr>
+
+    <h2>Agregar Canción</h2>
+    <input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
+    <input type="number" id="idArtista" placeholder="ID Artista"><br><br>
+    <input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
+    <input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
+    <input type="number" id="duracionCancion" placeholder="Duración"><br><br>
+    <input type="number" id="idIdioma" placeholder="ID Idioma"><br><br>
+    <textarea id="contenidoLetra" placeholder="Contenido de la letra" rows="5" cols="50"></textarea>
+
+    <button onclick="agregarCancion()">
+        Agregar Canción
+    </button>
+
+    <h3>Resultado inserción</h3>
+    <pre id="resultadoInsercion"></pre><br><br>
+
+    <hr>
+
+    <h2>Total de canciones</h2>
+    <button onclick="verTotalCanciones()">
+        Ver
+    </button>
+    <pre id="resultadoTotal"></pre>
+
+    <hr>
+
+    <h2>Total de usuarios</h2>
+    <button onclick="verUsuarios()">
+        Ver
+    </button>
+
+    <pre id="usuarios"></pre>
+
+    <hr>
+
+    <h2>Total de canciones por genero</h2>
+    <button onclick="descargarGenerosCSV()">
+        Descargar CSV
+    </button>
+
+    <hr>
+
+    <h2>Canciones por álbum</h2>
+    <button onclick="descargarCancionesPorAlbumCSV()">
+        Descargar CSV
+    </button>
+
+    <hr>
+
+    <h2>Ver tablas</h2>
+    <button onclick="verTotalTablas()">
+        Ver tablas
+    </button>
+
+    <hr>
+
+    <h2>Poblar tabla Usuarios</h2>
+    <button onclick="generarUsuarios()">
+        Genera hasta 6000 registros de prueba de id > 12 dentro de la tabla Usuarios.
+    </button>
+
+    <p id="resultadoGeneracion"></p>
+
+    <hr>
+
+    <h2>Vaciar tabla Usuarios</h2>
+    <button onclick="borrarUsuarios()">
+        Elimina todos los registros de id > 12 dentro de la tabla Usuarios.
+    </button>
+
+    <p id="resultadoBorrarUsuarios"></p>
+
+    <hr>
+
+    <h2>Analisis de consulta en tabla Usuarios</h2>
+    <button onclick="explainUsuarios()">
+        Ejecutar EXPLAIN ANALYZE de correo (usuario500@test.com) en Usuarios.
+    </button>
+
+    <pre id="resultadoExplain"></pre>
+
+    <hr>
+
+    <h2>Poblar tabla Historiales</h2>
+    <button onclick="generarHistoriales()">
+        Intenta generar 1000 registros de prueba dentro de la tabla Historiales.
+    </button>
+
+    <p id="resultadoGeneracionHistoriales"></p>
+
+    <hr>
+
+    <h2>Vaciar tabla Historiales</h2>
+    <button onclick="borrarHistoriales()">Elimina todos los registros dentro de la tabla Historiales.</button>
+    <p id="resultadoBorradoHistoriales"></p>
+
+    <hr>
+
+    <h2>Analisis de consulta en tabla Historiales</h2>
+    <button onclick="explainHistoriales()">
+        Ejecutar EXPLAIN ANALYZE de canciones del usuario 3 en un periodo de tiempo especifico, en la tabla Historiales.
+    </button>
+    <pre id="resultadoExplainHistoriales"></pre>
+
+    <hr>
+
+    <h2>Índice de Historiales</h2>
+    <button onclick="crearIndiceHistoriales()">
+        Crear índice compuesto (id_usuario, fecha)
+    </button>
+    <p id="resultadoCrearIndiceHistoriales"></p>
+    <button onclick="borrarIndiceHistoriales()">
+        Eliminar índice compuesto (id_usuario, fecha)
+        </button>
+    <p id="resultadoBorrarIndiceHistoriales"></p>
+
+    <hr>
+
+    <div id="toast-container"></div>
+
+    <h2>Crear Playlist (Transacción ACID)</h2>
+    <input type="text" id="nombrePlaylist" placeholder="Nombre de la playlist"><br><br>
+    <input type="text" id="cancionesPlaylist" placeholder="IDs de canciones(1,2,3)"><br><br>
+    <button onclick="crearPlaylist()">
+        Crear Playlist
+    </button>
+    <pre id="resultadoPlaylist"></pre>
+
+
+
+    <script src="toasts.js"></script>
     <script>
-
-
-
-
         function descargarReproduccionesCSV() {
-    window.location.href = '/api/generos/reproducciones/csv';
-}
-
+            window.location.href = '/api/generos/reproducciones/csv';
+        }
 
         function descargarCSV() {
-    const id = document.getElementById('idGenero').value;
-
-    if (!id) {
-        showToast('warning', 'Atención:', 'Coloca un valor para el genero!');
-        return;
-    }
-
-    window.location.href =
-        `/api/canciones/genero/${id}/bien-calificadas/csv`;
-}
+            const id = document.getElementById('idGenero').value;
+            if (!id) {
+                showToast('warning', 'Atención:', 'Coloca un valor para el genero!');
+                return;
+            }
+            window.location.href = `/api/canciones/genero/${id}/bien-calificadas/csv`;
+        }
 
         async function probarAPI() {
             const respuesta = await fetch('/api/db-test');
             const datos = await respuesta.json();
-
-            document.getElementById('resultado').textContent =
-                JSON.stringify(datos, null, 2);
+            document.getElementById('resultado').textContent = JSON.stringify(datos, null, 2);
         }
 
-        
-
-       
         async function agregarCancion() {
-    const body = {
-        id_album: Number(document.getElementById('idAlbum').value),
-        id_artista: Number(document.getElementById('idArtista').value),
-        id_genero: Number(document.getElementById('idGeneroCancion').value),
-        nombre: document.getElementById('nombreCancion').value,
-        duracion: Number(document.getElementById('duracionCancion').value),
-        id_idioma: Number(document.getElementById('idIdioma').value),
-        contenido: document.getElementById('contenidoLetra').value
-    };
+            const body = {
+                id_album: Number(document.getElementById('idAlbum').value),
+                id_artista: Number(document.getElementById('idArtista').value),
+                id_genero: Number(document.getElementById('idGeneroCancion').value),
+                nombre: document.getElementById('nombreCancion').value,
+                duracion: Number(document.getElementById('duracionCancion').value),
+                id_idioma: Number(document.getElementById('idIdioma').value),
+                contenido: document.getElementById('contenidoLetra').value
+            };
 
-    const respuesta = await fetch('/api/canciones', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    });
+            const respuesta = await fetch('/api/canciones', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
 
-    const datos = await respuesta.json();
+            const datos = await respuesta.json();
+            document.getElementById('resultadoInsercion').textContent = JSON.stringify(datos, null, 2);
+        }
 
-    document.getElementById('resultadoInsercion').textContent =
-        JSON.stringify(datos, null, 2);
-}
-async function verTotalCanciones() {
+        async function verTotalCanciones() {
+            const respuesta = await fetch('/api/cantidad-canciones');
+            const datos = await respuesta.json();
+            document.getElementById('resultadoTotal').textContent = `Total de canciones: ${datos.total_canciones}`;
+        }
 
-    const respuesta = await fetch('/api/cantidad-canciones');
+        async function verUsuarios() {
+            const res = await fetch('/api/reportes/total-usuarios');
+            const data = await res.json();
+            document.getElementById('usuarios').textContent = `Total de Usuarios: ${data.data.total_usuarios}`;
+        }
 
-    const datos = await respuesta.json();
+        function descargarGenerosCSV() {
+            window.location.href = '/api/reportes/total-canciones-por-genero/csv';
+        }
 
-    document.getElementById('resultadoTotal').textContent =
-        `Total de canciones: ${datos.total_canciones}`;
-}
-async function verUsuarios() {
-  const res = await fetch('/api/reportes/total-usuarios');
-  const data = await res.json();
+        function descargarCancionesPorAlbumCSV() {
+            window.location.href = '/api/reportes/total-canciones-por-album/csv';
+        }
 
-  document.getElementById('usuarios').textContent =
-    `Total de Usuarios: ${data.data.total_usuarios}`;
-}
-function descargarGenerosCSV() {
-    window.location.href =
-        '/api/reportes/total-canciones-por-genero/csv';
-}
-function descargarCancionesPorAlbumCSV() {
-    window.location.href =
-        '/api/reportes/total-canciones-por-album/csv';
-}
-async function verTotalTablas() {
-    window.open('/api/total-tablas', '_blank');
-}
-async function generarUsuarios() {
-    try {
-        const respuesta = await fetch('/api/generarUsuarios/6000');
+        async function verTotalTablas() {
+            window.open('/api/total-tablas', '_blank');
+        }
 
-        const datos = await respuesta.json();
+        async function generarUsuarios() {
+            try {
+                const respuesta = await fetch('/api/generarUsuarios/6000');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoGeneracion').textContent = `Insertados: ${datos.insertados}`;
+            } catch (error) {
+                document.getElementById('resultadoGeneracion').textContent = `Error: ${error.message}`;
+            }
+        }
 
-        document.getElementById('resultadoGeneracion').textContent =
-            `Insertados: ${datos.insertados}`;
+        async function borrarUsuarios() {
+            try {
+                const respuesta = await fetch('/api/borrarUsuarios');
+                const datos = await respuesta.json();
+                document.getElementById('resultado').textContent = datos.mensaje;
+                document.getElementById('resultadoBorrarUsuarios').textContent = `Eliminados: ${datos.eliminados} registros`;
+            } catch (error) {
+                document.getElementById('resultado').textContent = `Error: ${error.message}`;
+            }
+        }
 
-    } catch (error) {
-        document.getElementById('resultadoGeneracion').textContent =
-            `Error: ${error.message}`;
-    }
-}
+        async function explainUsuarios() {
+            try {
+                const respuesta = await fetch('/api/explainUsuarios/usuario500@test.com');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoExplain').textContent = datos.map(fila => fila["QUERY PLAN"]).join("\n");
+            } catch (error) {
+                document.getElementById('resultadoExplain').textContent = `Error: ${error.message}`;
+            }
+        }
 
-async function borrarUsuarios() {
-    try {
-        const respuesta = await fetch('/api/borrarUsuarios');
+        async function generarHistoriales() {
+            try {
+                const respuesta = await fetch('/api/generarHistoriales/1000');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoGeneracionHistoriales').textContent = `Insertados: ${datos.insertados}`;
+            } catch (error) {
+                document.getElementById('resultadoGeneracionHistoriales').textContent = `Error: ${error.message}`;
+            }
+        }
 
-        const datos = await respuesta.json();
+        async function borrarHistoriales() {
+            try {
+                const respuesta = await fetch('/api/borrarHistoriales');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoBorradoHistoriales').textContent = `${datos.mensaje} Eliminados: ${datos.eliminados}`;
+            } catch (error) {
+                document.getElementById('resultadoBorradoHistoriales').textContent = `Error: ${error.message}`;
+            }
+        }
 
-        document.getElementById('resultado').textContent =
-            datos.mensaje;
+        async function explainHistoriales() {
+            try {
+                const respuesta = await fetch('/api/explainHistoriales/3');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoExplainHistoriales').textContent = datos.map(fila => fila["QUERY PLAN"]).join("\n");
+            } catch (error) {
+                document.getElementById('resultadoExplainHistoriales').textContent = `Error: ${error.message}`;
+            }
+        }
 
-	document.getElementById('resultadoBorrarUsuarios').textContent =
-  	  `Eliminados: ${datos.eliminados} registros`;
+        async function crearIndiceHistoriales() {
+            try {
+                const respuesta = await fetch('/api/crearIndiceHistoriales');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoCrearIndiceHistoriales').textContent = datos.mensaje;
+            } catch (error) {
+                document.getElementById('resultadoCrearIndiceHistoriales').textContent = `Error: ${error.message}`;
+            }
+        }
 
-    } catch (error) {
-        document.getElementById('resultado').textContent =
-            `Error: ${error.message}`;
-    }
-}
+        async function borrarIndiceHistoriales() {
+            try {
+                const respuesta = await fetch('/api/borrarIndiceHistoriales');
+                const datos = await respuesta.json();
+                document.getElementById('resultadoBorrarIndiceHistoriales').textContent = datos.mensaje;
+            } catch (error) {
+                document.getElementById('resultadoBorrarIndiceHistoriales').textContent = `Error: ${error.message}`;
+            }
+        }
 
-async function explainUsuarios() {
-    try {
-        const respuesta = await fetch(
-            '/api/explainUsuarios/usuario500@test.com'
-        );
+        async function crearPlaylist() {
+            const nombre = document.getElementById('nombrePlaylist').value;
+            const canciones = document.getElementById('cancionesPlaylist').value
+                .split(',')
+                .map(id => Number(id.trim()));
 
-        const datos = await respuesta.json();
+            const respuesta = await fetch('/api/playlists/crear', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nombre, canciones })
+            });
 
-        document.getElementById('resultadoExplain').textContent =
-            datos.map(fila => fila["QUERY PLAN"]).join("\n");
-
-    } catch (error) {
-        document.getElementById('resultadoExplain').textContent =
-            `Error: ${error.message}`;
-    }
-}
-
-async function generarHistoriales() {
-    try {
-        const respuesta = await fetch(
-            '/api/generarHistoriales/1000'
-        );
-
-        const datos = await respuesta.json();
-
-	document.getElementById('resultadoGeneracionHistoriales').textContent =
-  	  `Insertados: ${datos.insertados}`;
-
-    } catch (error) {
-        document.getElementById('resultadoGeneracionHistoriales').textContent =
-            `Error: ${error.message}`;
-    }
-}
-
-async function borrarHistoriales() {
-    try {
-        const respuesta = await fetch(
-            '/api/borrarHistoriales'
-        );
-
-        const datos = await respuesta.json();
-
-	document.getElementById('resultadoBorradoHistoriales').textContent =
-  	  `${datos.mensaje} Eliminados: ${datos.eliminados}`;
-
-    } catch (error) {
-        document.getElementById('resultadoBorradoHistoriales').textContent =
-            `Error: ${error.message}`;
-    }
-}
-
-async function explainHistoriales() {
-    try {
-        const respuesta = await fetch(
-            '/api/explainHistoriales/3'
-        );
-
-        const datos = await respuesta.json();
-
-        document.getElementById(
-            'resultadoExplainHistoriales'
-        ).textContent =
-            datos.map(fila => fila["QUERY PLAN"]).join("\n");
-
-    } catch (error) {
-        document.getElementById(
-            'resultadoExplainHistoriales'
-        ).textContent =
-            `Error: ${error.message}`;
-    }
-}
-
-async function crearIndiceHistoriales() {
-    try {
-        const respuesta = await fetch('/api/crearIndiceHistoriales');
-
-        const datos = await respuesta.json();
-
-        document.getElementById(
-            'resultadoCrearIndiceHistoriales'
-        ).textContent = datos.mensaje;
-
-    } catch (error) {
-        document.getElementById(
-            'resultadoCrearIndiceHistoriales'
-        ).textContent = `Error: ${error.message}`;
-    }
-}
-
-async function borrarIndiceHistoriales() {
-    try {
-        const respuesta = await fetch(
-            '/api/borrarIndiceHistoriales'
-        );
-
-        const datos = await respuesta.json();
-
-        document.getElementById(
-            'resultadoBorrarIndiceHistoriales'
-        ).textContent = datos.mensaje;
-
-    } catch (error) {
-        document.getElementById(
-            'resultadoBorrarIndiceHistoriales'
-        ).textContent = `Error: ${error.message}`;
-    }
-}
-async function crearPlaylist() {
-
-    const nombre = document.getElementById('nombrePlaylist').value;
-
-    const canciones = document
-        .getElementById('cancionesPlaylist')
-        .value
-        .split(',')
-        .map(id => Number(id.trim()));
-
-    const respuesta = await fetch('/api/playlists/crear', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            nombre,
-            canciones
-        })
-    });
-
-    const datos = await respuesta.json();
-
-    document.getElementById('resultadoPlaylist').textContent =
-        JSON.stringify(datos, null, 2);
-}
-        
-
+            const datos = await respuesta.json();
+            document.getElementById('resultadoPlaylist').textContent = JSON.stringify(datos, null, 2);
+        }
     </script>
-    <hr>
-
-<h2>Agregar Canción</h2>
-
-<input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
-<input type="number" id="idArtista" placeholder="ID Artista"><br><br>
-<input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
-
-<input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
-
-<input type="number" id="duracionCancion" placeholder="Duración"><br><br>
-
-<input type="number" id="idIdioma" placeholder="ID Idioma"><br><br>
-
-<textarea
-    id="contenidoLetra"
-    placeholder="Contenido de la letra"
-    rows="5"
-    cols="50"></textarea>
-    <button onclick="agregarCancion()">
-    Agregar Canción
-</button>
-<h3>Resultado inserción</h3>
-<pre id="resultadoInsercion"></pre>
-<br><br>
-<hr>
-<h2>Total de canciones</h2>
-
-<button onclick="verTotalCanciones()">
-    Ver 
-</button>
-
-
-<pre id="resultadoTotal"></pre>
-<hr>
-
-<h2>Total de usuarios</h2>
-<button onclick="verUsuarios()">Ver</button>
-<pre id="usuarios"></pre>
-<hr>
-<h2>Total de canciones por genero</h2>
-<button onclick="descargarGenerosCSV()">
-    Descargar CSV
-</button>
-<hr>
-<h2>Canciones por álbum</h2>
-
-<button onclick="descargarCancionesPorAlbumCSV()">
-    Descargar CSV
-</button>
-<hr>
-
-<h2>Ver tablas</h2>
- <button onclick="verTotalTablas()">
-    Ver tablas
- </button>
-<hr>
-
-<h2>Poblar tabla Usuarios</h2>
- <button onclick="generarUsuarios()">
-    Genera hasta 6000 registros de prueba de id > 12 dentro de la tabla Usuarios.
- </button>
-
-<p id="resultadoGeneracion"></p>
-<hr>
-
-<h2>Vaciar tabla Usuarios</h2>
- <button onclick="borrarUsuarios()">
-    Elimina todos los registros de id > 12 dentro de la tabla Usuarios.
- </button>
-
-<p id="resultadoBorrarUsuarios"></p>
-<hr>
-
-<h2>Analisis de consulta en tabla Usuarios</h2>
- <button onclick="explainUsuarios()">
-    Ejecutar EXPLAIN ANALYZE de correo (usuario500@test.com) en Usuarios.
- </button>
-
-<pre id="resultadoExplain"></pre>
-<hr>
-
-
-<h2>Poblar tabla Historiales</h2>
- <button onclick="generarHistoriales()">
-    Intenta generar 1000 registros de prueba dentro de la tabla Historiales.
- </button>
-
-<p id="resultadoGeneracionHistoriales"></p>
-<hr>
-
-<h2>Vaciar tabla Historiales</h2>
- <button onclick="borrarHistoriales()">
-    Elimina todos los registros dentro de la tabla Historiales.
- </button>
-
-<p id="resultadoBorradoHistoriales"></p>
-<hr>
-
-<h2>Analisis de consulta en tabla Historiales</h2>
- <button onclick="explainHistoriales()">
-    Ejecutar EXPLAIN ANALYZE de canciones del usuario 3 en un periodo de tiempo especifico, en la tabla Historiales.
- </button>
-
-<pre id="resultadoExplainHistoriales"></pre>
-<hr>
-
-<h2>Índice de Historiales</h2>
-
-<button onclick="crearIndiceHistoriales()">
-    Crear índice compuesto (id_usuario, fecha)
-</button>
-
-<p id="resultadoCrearIndiceHistoriales"></p>
-
-<button onclick="borrarIndiceHistoriales()">
-    Eliminar índice compuesto (id_usuario, fecha)
-</button>
-
-<p id="resultadoBorrarIndiceHistoriales"></p>
-<hr>
-
-<div id="toast-container"></div>
-<script src="toasts.js"></script>
-
-
-
-
-
-<h2>Crear Playlist (Transacción ACID)</h2>
-
-<input
-    type="text"
-    id="nombrePlaylist"
-    placeholder="Nombre de la playlist">
-
-<br><br>
-
-<input
-    type="text"
-    id="cancionesPlaylist"
-    placeholder="IDs de canciones(1,2,3)">
-
-<br><br>
-
-<button onclick="crearPlaylist()">
-    Crear Playlist
-</button>
-
-<pre id="resultadoPlaylist"></pre>
 </body>
 </html>
+
