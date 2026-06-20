@@ -16,12 +16,6 @@ VALUES (
     3,
     CURRENT_DATE
 );
-
--- PASO 3: Insertar calificacion inicial (0 estrellas).
-INSERT INTO calificaciones (id_usuario, id_cancion, valoracion)
-VALUES (1, 3, 0)
-ON CONFLICT (id_usuario, id_cancion) DO NOTHING;
-
 COMMIT;
 
 -- ROLLBACK;
