@@ -212,29 +212,6 @@ app.post('/api/canciones', async (req, res) => {
 });
 
 
-// Total de canciones
-app.get('/api/cantidad-canciones', async (req, res) => {
-    try {
-        const result = await pool.query(`
-            SELECT COUNT(*) AS total_canciones
-            FROM canciones
-        `);
-
-        res.json({
-            ok: true,
-            total_canciones: result.rows[0].total_canciones
-        });
-    } catch (error) {
-        res.status(500).json({
-            ok: false,
-            error: error.message
-        });
-    }
-    
-});
-
-
-
 
 const rutaTablas = require('./routes/tablas');
 app.use('/api/total-tablas', rutaTablas);
