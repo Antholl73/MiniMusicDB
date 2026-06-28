@@ -232,27 +232,6 @@ app.get('/api/cantidad-canciones', async (req, res) => {
     }
     
 });
-//total de usuarios
-app.get('/api/reportes/total-usuarios', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT COUNT(*) AS total_usuarios
-      FROM usuarios
-    `);
-
-    res.json({
-      ok: true,
-      data: result.rows[0]
-    });
-
-  } catch (error) {
-    res.status(500).json({
-      ok: false,
-      error: error.message
-    });
-  }
-});
-
 
 
 
@@ -275,6 +254,7 @@ app.use(require('./routes/registrarCancion'));
 app.use(require('./routes/cancionesporAlbum'));
 app.use(require('./routes/crearPlaylist'));
 app.use(require('./routes/cancionesporGenero'));
+app.use(require('./routes/totalUsuarios'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
