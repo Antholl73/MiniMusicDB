@@ -1,2 +1,3 @@
 ALTER TABLE canciones
-   ADD COLUMN letra_cacnion JSONB;
+DROP COLUMN letra_cacnion,
+ADD COLUMN letras JSONB;
