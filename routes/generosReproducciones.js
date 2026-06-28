@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../dataBase');
 
 // Generos con sus reproducciones y duracion promedio de canciones
-app.get('/api/generos/reproducciones/csv', async (req, res) => {
+router.get('/api/generos/reproducciones/csv', async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT
