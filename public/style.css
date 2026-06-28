@@ -78,3 +78,20 @@ h3{
     padding:1.5rem;
 
 }
+
+.text-columns {
+  display: grid;
+  grid-template-columns: 1fr 4px 1fr 4px 1fr 4px 1fr;
+  align-items: start;
+}
+
+.col-divider {
+  background: #3b82f6; /* or whatever color you want */
+  border-radius: 2px;
+  align-self: stretch;  /* makes it as tall as its neighbors */
+  min-height: 60px;
+}
+
+.col-text {
+  padding: 0 20px;
+}
