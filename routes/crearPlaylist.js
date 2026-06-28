@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../dataBase');
 
-app.post('/api/playlists/crear', async (req, res) => {
+router.post('/api/playlists/crear', async (req, res) => {
   const { nombre, canciones } = req.body;
 
   const client = await pool.connect();

@@ -253,38 +253,7 @@ app.get('/api/reportes/total-usuarios', async (req, res) => {
   }
 });
 
-//total canciones por genero
-app.get('/api/reportes/total-canciones-por-genero/csv', async (req, res) => {
-  try {
-    const result = await pool.query(`
-      SELECT id_genero, COUNT(*) AS total
-      FROM canciones
-      GROUP BY id_genero
-    `);
 
-    // crear
-    let csv = 'id_genero,total_canciones\n';
-
-    result.rows.forEach(row => {
-      csv += `${row.id_genero},${row.total}\n`;
-    });
-
-    // descarga
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader(
-      'Content-Disposition',
-      'attachment; filename="canciones_por_genero.csv"'
-    );
-
-    res.send(csv);
-
-  } catch (error) {
-    res.status(500).json({
-      ok: false,
-      error: error.message
-    });
-  }
-});
 
 
 
@@ -305,6 +274,7 @@ app.use(require('./routes/borrarIndiceHistoriales'));
 app.use(require('./routes/registrarCancion'));
 app.use(require('./routes/cancionesporAlbum'));
 app.use(require('./routes/crearPlaylist'));
+app.use(require('./routes/cancionesporGenero'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
