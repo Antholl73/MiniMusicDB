@@ -23,6 +23,8 @@
 - usuarios
 
 La database se modelo con 14 entidades.
+
+
 *Las siguientes tablas/entidades fueron eliminadas a favor del uso de un atributo JSONB:
 - idiomas
 - letras_cancion
