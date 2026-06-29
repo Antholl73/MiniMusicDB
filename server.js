@@ -55,6 +55,7 @@ app.use(require('./routes/totalUsuarios'));
 app.use(require('./routes/aniadircancionAlbum'));
 app.use(require('./routes/generosReproducciones'));
 app.use(require('./routes/cancionesPopularesGenero'));
+app.use(require('./routes/generosTendencia'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
