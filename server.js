@@ -60,6 +60,7 @@ app.use(require('./routes/cancionesTendenciaGenero'));
 app.use(require('./routes/discograficasVirales'));
 app.use(require('./routes/artistasTendencia'));
 app.use(require('./routes/hitsSemana'));
+app.use(require('./routes/totalCanciones'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

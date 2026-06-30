@@ -235,11 +235,18 @@
             document.getElementById('resultadoInsercion').textContent = JSON.stringify(datos, null, 2);
         }
 
-        async function verTotalCanciones() {
-            const respuesta = await fetch('/api/cantidad-canciones');
-            const datos = await respuesta.json();
-            document.getElementById('resultadoTotal').textContent = `Total de canciones: ${datos.total_canciones}`;
-        }
+       async function verTotalCanciones() {
+    try {
+        const respuesta = await fetch('/api/cantidad-canciones');
+        const datos = await respuesta.json();
+
+        document.getElementById('resultadoTotal').textContent =
+            `Total de canciones: ${datos.total_canciones}`;
+    } catch(error) {
+        console.error(error);
+    }
+}
+        
 
         async function verUsuarios() {
             const res = await fetch('/api/reportes/total-usuarios');
