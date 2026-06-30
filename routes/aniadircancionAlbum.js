@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../dataBase');
 
-// Añadir una canción con letra a un álbum
+// Añadir una canción a un álbum
 router.post('/api/canciones', async (req, res) => {
   const {
     id_album,
@@ -13,25 +13,21 @@ router.post('/api/canciones', async (req, res) => {
     id_genero,
     nombre,
     duracion,
-    id_idioma,
     contenido
   } = req.body;
 
-  
-
-  // Validación de campos obligatorios para canción y letra
+  // Validación de campos obligatorios
   if (
     id_album === undefined ||
     id_artista === undefined ||
     id_genero === undefined ||
     !nombre ||
     duracion === undefined ||
-    id_idioma === undefined ||
     !contenido
   ) {
     return res.status(400).json({
       ok: false,
-      mensaje: 'Faltan campos obligatorios en el body de la petición. Se requiere id_album, id_artista, id_genero, nombre, duracion, id_idioma y contenido.'
+      mensaje: 'Faltan campos obligatorios. Se requiere id_album, id_artista, id_genero, nombre, duracion y contenido.'
     });
   }
 
@@ -43,38 +39,61 @@ router.post('/api/canciones', async (req, res) => {
   }
 
   const client = await pool.connect();
+
   try {
     await client.query('BEGIN');
 
-    // 1. Opcionalmente insertar o asegurar el álbum si se envían los detalles completos del álbum
+    // Crear álbum si se envían sus datos
     if (nombre_album && fecha_lanzamiento) {
       await client.query(`
-        INSERT INTO albumes (id, id_artista, id_discografica, nombre_album, fecha_lanzamiento)
+        INSERT INTO albumes (
+          id,
+          id_artista,
+          id_discografica,
+          nombre_album,
+          fecha_lanzamiento
+        )
         VALUES ($1, $2, $3, $4, $5)
         ON CONFLICT (id, id_artista) DO NOTHING
-      `, [id_album, id_artista, id_discografica || null, nombre_album, fecha_lanzamiento]);
+      `, [
+        id_album,
+        id_artista,
+        id_discografica || null,
+        nombre_album,
+        fecha_lanzamiento
+      ]);
     }
 
-    // 2. Insertar la canción
+    // Insertar canción con letras JSONB
     const insertSongResult = await client.query(`
-      INSERT INTO canciones (id_album, id_artista, id_genero, nombre, duracion)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO canciones (
+        id_album,
+        id_artista,
+        id_genero,
+        nombre,
+        duracion,
+        letras
+      )
+      VALUES ($1, $2, $3, $4, $5, $6::jsonb)
       RETURNING id
-    `, [id_album, id_artista, id_genero, nombre, duracion]);
+    `, [
+      id_album,
+      id_artista,
+      id_genero,
+      nombre,
+      duracion,
+      JSON.stringify({
+        contenido: contenido
+      })
+    ]);
 
     const newSongId = insertSongResult.rows[0].id;
-
-    // 3. Insertar la letra de la canción
-    await client.query(`
-      INSERT INTO letras_cancion (id_cancion, id_idioma, contenido)
-      VALUES ($1, $2, $3)
-    `, [newSongId, id_idioma, contenido]);
 
     await client.query('COMMIT');
 
     res.status(201).json({
       ok: true,
-      mensaje: 'Canción con letra añadida con éxito al álbum',
+      mensaje: 'Canción añadida con éxito',
       data: {
         id_cancion: newSongId,
         id_album,
@@ -82,21 +101,26 @@ router.post('/api/canciones', async (req, res) => {
         id_genero,
         nombre,
         duracion,
-        letra: {
-          id_idioma,
+        letras: {
           contenido
         }
       }
     });
 
   } catch (error) {
+
     await client.query('ROLLBACK');
+
+    console.error(error);
+
     res.status(500).json({
       ok: false,
-      mensaje: 'Error al añadir la canción con letra',
+      mensaje: 'Error al añadir la canción',
       error: error.message,
+      detalle: error.detail,
       codigo: error.code
     });
+
   } finally {
     client.release();
   }
