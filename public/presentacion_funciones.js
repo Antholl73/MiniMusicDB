@@ -1,11 +1,9 @@
-async function verTotalCanciones() {
-    try {
-        const respuesta = await fetch('/api/cantidad-canciones');
-        const datos = await respuesta.json();
+function toggleForm(id) {
+  const allForms = document.querySelectorAll('[id^="form"]');
+  allForms.forEach(form => {
+    if (form.id !== id) form.style.display = 'none'; // close others
+  });
 
-        document.getElementById('resultadoTotal').textContent =
-            `Total de canciones: ${datos.total_canciones}`;
-        } catch(error) {
-        console.error(error);
-        }
-   }
+  const target = document.getElementById(id);
+  target.style.display = target.style.display === 'none' ? 'block' : 'none';
+}

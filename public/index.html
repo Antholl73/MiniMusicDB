@@ -25,20 +25,38 @@
   <div class="col-text">(D)elete</div>
 </div>
 
-	<div class="grid-4">
- 	  <button class="btn btn-create""> CANCION </button>
- 	  <button class="btn btn-read"> CANCIONES DENTRO DE UN ALBUM </button>
-	  <button class="btn btn-update"> NOMBRE + GENERO </button>
-	  <button class="btn btn-delete"> DELETE DE CANCION SEGUN SU ID </button>
- 	  <button class="btn btn-create"> USUARIO </button>
- 	  <button class="btn btn-read"> USUARIOS DE CORREO GMAIL </button>
-	  <button class="btn btn-update"> CORREO + NOMBRE </button>
-	  <button class="btn btn-delete"> DELETE DE USUARIO SEGUN SU ID </button>
- 	  <button class="btn btn-create""> DETALLES_PLAYLIST </button>
- 	  <button class="btn btn-read"> CANCIONES DENTRO DE UNA PLAYLIST </button>
-	  <button class="btn btn-update"> SWAP POSICION </button>
-	  <button class="btn btn-delete"> DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID) </button>
-	</div>
+<div class="grid-4">
+  <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">CANCION</button>
+  <button class="btn btn-read"   onclick="toggleForm('formCancelasAlbum')">CANCIONES DENTRO DE UN ALBUM</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">NOMBRE + GENERO</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">DELETE DE CANCION SEGUN SU ID</button>
+
+  <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">USUARIO</button>
+  <button class="btn btn-read"   onclick="toggleForm('formUsuariosGmail')">USUARIOS DE CORREO GMAIL</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">CORREO + NOMBRE</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">DELETE DE USUARIO SEGUN SU ID</button>
+
+  <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">DETALLES_PLAYLIST</button>
+  <button class="btn btn-read"   onclick="toggleForm('formCancionesPlaylist')">CANCIONES DENTRO DE UNA PLAYLIST</button>
+  <button class="btn btn-update" onclick="toggleForm('formSwapPosicion')">SWAP POSICION</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID)</button>
+</div>
+
+<!-- All forms below the grid, all hidden by default -->
+<div id="formAgregarCancion" style="display:none;">
+  <h2>Agregar Canción</h2>
+  <!-- your inputs here -->
+</div>
+
+<div id="formCancelasAlbum" style="display:none;">
+  <h2>Canciones dentro de un Álbum</h2>
+  <!-- your inputs here -->
+</div>
+
+<div id="formUpdateCancion" style="display:none;">
+  <h2>Actualizar Nombre + Género</h2>
+  <!-- your inputs here -->
+</div>
 
     <h2>Canciones bien calificadas por género</h2>
     <button onclick="descargarCSV()">
@@ -385,7 +403,7 @@
         }
     </script>
 
-<script src="funciones.js"></script>
+<script src="presentacion_funciones.js"></script>
 
 </body>
 </html>
