@@ -213,12 +213,7 @@
     <pre id="resultadoCanciones"></pre>
 
     <hr>
-
-    <h2>Reporte de reproducciones por género</h2>
-    <button onclick="descargarReproduccionesCSV()">
-        Descargar CSV
-    </button>
-
+	
     <pre id="resultadoReproducciones"></pre>
 
     <hr>
@@ -320,10 +315,7 @@
 
     <script src="toasts.js"></script>
     <script>
-        function descargarReproduccionesCSV() {
-            window.location.href = '/api/generos/reproducciones/csv';
-        }
-
+        
         function descargarCSV() {
             const id = document.getElementById('idGenero').value;
             if (!id) {
