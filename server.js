@@ -62,6 +62,10 @@ app.use(require('./routes/artistasTendencia'));
 app.use(require('./routes/hitsSemana'));
 app.use(require('./routes/totalCanciones'));
 
+// Funciones del CRUD
+app.use(require('./routes/CRUDinsertarDetalle'));
+app.use(require('./routes/CRUDinsertarUsuario'));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
