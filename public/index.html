@@ -11,10 +11,18 @@
     <header>
 
         <h1>MiniMusicDB</h1>
-        <button onclick="probarAPI()">Probar API</button>
+        <button class="btn btn-update" onclick="probarAPI()">Probar API</button>
         <pre id="resultado"></pre>
 
     </header>
+
+<div>
+    <h2>Ver todas las tablas</h2>
+    <button class="btn btn-update" onclick="verTotalTablas()">Abrir pestaña de tablas</button>
+</div>
+
+<br>
+
 <div class="text-columns">
   <div class="col-text">(C)reate</div>
   <div class="col-divider" style="background: #22c55e;"></div> 
@@ -184,13 +192,6 @@
     <h2>Canciones por álbum</h2>
     <button onclick="descargarCancionesPorAlbumCSV()">
         Descargar CSV
-    </button>
-
-    <hr>
-
-    <h2>Ver tablas</h2>
-    <button onclick="verTotalTablas()">
-        Ver tablas
     </button>
 
     <hr>
