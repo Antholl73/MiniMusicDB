@@ -1,22 +1,20 @@
 // FUNCIONES PARA LOS JSON FORMATEADOS
 function cardExito(mensaje, data, query = null) {
     return `
-        <div style="background:#f0fdf4; border:1px solid #22c55e; border-radius:8px; padding:16px; font-family:monospace; font-size:0.9em;">
-            <div style="color:#16a34a; font-weight:bold; margin-bottom:10px;">
-                ✓ ${mensaje}
-            </div>
-            <div style="color:#333;">
+        <div style="background:#f0fdf4; border:1px solid #22c55e; border-radius:8px; padding:10px; font-family:monospace; font-size:0.9em; display:inline-block; min-width:200px;">
+            <div style="color:#16a34a; font-weight:bold; margin-bottom:4px;">✓ ${mensaje}</div>
+            <div style="color:#333; line-height:1.3;">
                 ${Object.entries(data).map(([key, val]) =>
-                    `<div style="margin:4px 0;">
-                        <span style="color:#888;">${key}:</span>
-                        <span style="margin-left:8px;">${JSON.stringify(val)}</span>
+                    `<div style="display:flex; gap:8px; margin:1px 0;">
+                        <span style="color:#888; white-space:nowrap;">${key}:</span>
+                        <span>${JSON.stringify(val)}</span>
                     </div>`
                 ).join('')}
             </div>
             ${query ? `
-            <div style="margin-top:12px; border-top:1px solid #bbf7d0; padding-top:10px;">
-                <div style="color:#888; font-size:0.85em; margin-bottom:4px;">Query ejecutada:</div>
-                <pre style="margin:0; color:#555; white-space:pre-wrap;">${query}</pre>
+            <div style="margin-top:6px; border-top:1px solid #bbf7d0; padding-top:4px;">
+                <div style="color:#888; font-size:0.85em; margin-bottom:2px;">Query ejecutada:</div>
+                <pre style="margin:0; padding:0; color:#555; white-space:pre-wrap; word-break:break-word;">${query}</pre>
             </div>` : ''}
         </div>
     `;
@@ -24,22 +22,22 @@ function cardExito(mensaje, data, query = null) {
 
 function cardError(datos, query = null) {
     return `
-        <div style="background:#fef2f2; border:1px solid #ef4444; border-radius:8px; padding:16px; font-family:monospace; font-size:0.9em; color:#dc2626;">
-            <div style="font-weight:bold; margin-bottom:10px;">✗ ${datos.mensaje}</div>
-            <div style="color:#333;">
+        <div style="background:#fef2f2; border:1px solid #ef4444; border-radius:8px; padding:10px; font-family:monospace; font-size:0.9em; color:#dc2626; display:inline-block; min-width:200px;">
+            <div style="font-weight:bold; margin-bottom:4px;">✗ ${datos.mensaje}</div>
+            <div style="color:#333; line-height:1.3;">
                 ${Object.entries(datos)
                     .filter(([key]) => key !== 'ok' && key !== 'mensaje')
                     .map(([key, val]) =>
-                        `<div style="margin:4px 0;">
-                            <span style="color:#888;">${key}:</span>
-                            <span style="margin-left:8px;">${JSON.stringify(val)}</span>
+                        `<div style="display:flex; gap:8px; margin:1px 0;">
+                            <span style="color:#888; white-space:nowrap;">${key}:</span>
+                            <span>${JSON.stringify(val)}</span>
                         </div>`
                     ).join('')}
             </div>
             ${query ? `
-            <div style="margin-top:12px; border-top:1px solid #fecaca; padding-top:10px;">
-                <div style="color:#888; font-size:0.85em; margin-bottom:4px;">Query ejecutada:</div>
-                <pre style="margin:0; color:#555; white-space:pre-wrap;">${query}</pre>
+            <div style="margin-top:6px; border-top:1px solid #fecaca; padding-top:4px;">
+                <div style="color:#888; font-size:0.85em; margin-bottom:2px;">Query ejecutada:</div>
+                <pre style="margin:0; padding:0; color:#555; white-space:pre-wrap; word-break:break-word;">${query}</pre>
             </div>` : ''}
         </div>
     `;
