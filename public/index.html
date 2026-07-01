@@ -41,21 +41,69 @@
   <button class="btn btn-update" onclick="toggleForm('formSwapPosicion')">SWAP POSICION</button>
   <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID)</button>
 </div>
+<br>
 
-<!-- All forms below the grid, all hidden by default -->
+<!-- Formulario dinamico para insertar cancion CRUD -->
 <div id="formAgregarCancion" style="display:none;">
-  <h2>Agregar Canción</h2>
-  <!-- your inputs here -->
+    <h2>Agregar Canción</h2>
+
+<input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
+
+<input type="number" id="idArtista" placeholder="ID Artista"><br><br>
+
+<input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
+
+<input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
+
+<input type="number" id="duracionCancion" placeholder="Duración"><br><br>
+
+<textarea
+    id="contenidoLetra"
+    placeholder="Contenido de la letra"
+    rows="5"
+    cols="50">
+</textarea>
+
+<br>
+
+  <button class="btn btn-create" onclick="agregarCancion()">Agregar CANCION</button>
+
+<h3>Resultado inserción</h3>
+<pre id="resultadoInsercion"></pre>
+
+<hr>
+
 </div>
 
-<div id="formCancelasAlbum" style="display:none;">
-  <h2>Canciones dentro de un Álbum</h2>
-  <!-- your inputs here -->
+<!-- Formulario dinamico para insertar usuario CRUD -->
+<div id="formAgregarUsuario" style="display:none;">
+
+  <h2>Insertar Usuario</h2>
+	<input type="number" id="insercion_usuario_correo" placeholder="Correo del usuario"><br><br>
+	<input type="number" id="insercion_usuario_nombre" placeholder="Nombre del usuario"><br><br>
+
+        <button class="btn btn-create" onclick="insertarUsuario()">Agregar USUARIO</button>
+
+	<h3>Resultado inserción</h3>
+	<pre id="resultado_insercion_usuario"></pre>
+	<hr>
+
 </div>
 
-<div id="formUpdateCancion" style="display:none;">
-  <h2>Actualizar Nombre + Género</h2>
-  <!-- your inputs here -->
+<!-- Formulario dinamico para insertar detalle_playlist CRUD -->
+<div id="formAgregarDetalle" style="display:none;">
+
+  <h2>Insertar Detalle_playlist</h2>
+	<input type="number" id="insercion_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
+	<input type="number" id="insercion_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
+	<input type="number" id="insercion_detalle_posicion" placeholder="Posicion en la playlist"><br><br>
+
+        <button class="btn btn-create" onclick="insertarDetalle_playlist()">Agregar DETALLE_PLAYLIST</button>
+
+	<h3>Resultado inserción</h3>
+	<pre id="resultado_insercion_detalle"></pre>
+	<hr>
+
 </div>
 
     <h2>Canciones bien calificadas por género</h2>
@@ -78,36 +126,6 @@
     </button>
 
     <pre id="resultadoReproducciones"></pre>
-
-    <hr>
-
-    <h2>Agregar Canción</h2>
-
-<input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
-
-<input type="number" id="idArtista" placeholder="ID Artista"><br><br>
-
-<input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
-
-<input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
-
-<input type="number" id="duracionCancion" placeholder="Duración"><br><br>
-
-<textarea
-    id="contenidoLetra"
-    placeholder="Contenido de la letra"
-    rows="5"
-    cols="50">
-</textarea>
-
-<br><br>
-
-<button onclick="agregarCancion()">
-    Agregar Canción
-</button>
-
-<h3>Resultado inserción</h3>
-<pre id="resultadoInsercion"></pre>
 
     <hr>
 
