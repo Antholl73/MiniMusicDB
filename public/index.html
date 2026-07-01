@@ -27,23 +27,23 @@
 
 <div class="grid-4">
   <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">CANCION</button>
-  <button class="btn btn-read"   onclick="toggleForm('formCancelasAlbum')">CANCIONES DENTRO DE UN ALBUM</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadCancionAlbum')">CANCIONES DENTRO DE UN ALBUM</button>
   <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">NOMBRE + GENERO</button>
   <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">DELETE DE CANCION SEGUN SU ID</button>
 
   <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">USUARIO</button>
-  <button class="btn btn-read"   onclick="toggleForm('formUsuariosGmail')">USUARIOS DE CORREO GMAIL</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadUsuariosCorreo')">USUARIOS DE CORREO GMAIL</button>
   <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">CORREO + NOMBRE</button>
   <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">DELETE DE USUARIO SEGUN SU ID</button>
 
   <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">DETALLES_PLAYLIST</button>
-  <button class="btn btn-read"   onclick="toggleForm('formCancionesPlaylist')">CANCIONES DENTRO DE UNA PLAYLIST</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadDetallesPlaylist')">DETALLES DENTRO DE UNA PLAYLIST</button>
   <button class="btn btn-update" onclick="toggleForm('formSwapPosicion')">SWAP POSICION</button>
   <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID)</button>
 </div>
 <br>
 
-<!-- Formulario dinamico para insertar cancion CRUD -->
+<!-- Formulario dinamico para CREATE insertar cancion CRUD -->
 <div id="formAgregarCancion" style="display:none;">
     <h2>Agregar Canción</h2>
 
@@ -75,7 +75,7 @@
 
 </div>
 
-<!-- Formulario dinamico para insertar usuario CRUD -->
+<!-- Formulario dinamico para CREATE insertar usuario CRUD -->
 <div id="formAgregarUsuario" style="display:none;">
 
   <h2>Insertar Usuario</h2>
@@ -90,7 +90,7 @@
 
 </div>
 
-<!-- Formulario dinamico para insertar detalle_playlist CRUD -->
+<!-- Formulario dinamico para CREATE insertar detalle_playlist CRUD -->
 <div id="formAgregarDetalle" style="display:none;">
 
   <h2>Insertar Detalle_playlist</h2>
@@ -102,6 +102,35 @@
 	<h3>Resultado inserción</h3>
 	<pre id="resultado_insercion_detalle"></pre>
 	<hr>
+
+</div>
+
+<!-- Formulario dinamico para READ canciones dentro de un album CRUD -->
+<div id="formReadCancionAlbum" style="display:none;">
+
+  <h2>Ver las canciones dentro de un album</h2>
+	<input type="number" id="read_canciones_ID_album" placeholder="ID del album"><br><br>
+
+        <button class="btn btn-read" onclick="pestañaCancionesAlbum()">Ver en nueva pestaña</button>
+
+</div>
+
+<!-- Formulario dinamico para READ usuarios del dominio Gmail CRUD -->
+<div id="formReadUsuariosCorreo" style="display:none;">
+
+  <h2>Ver los usuarios de correo Gmail</h2>
+
+        <button class="btn btn-read" onclick="pestañaUsuariosCorreo()">Ver en nueva pestaña</button>
+
+</div>
+
+<!-- Formulario dinamico para READ canciones dentro de una playlist CRUD -->
+<div id="formReadDetallesPlaylist" style="display:none;">
+
+  <h2>Ver los detalles_playlist dentro de una playlist</h2>
+	<input type="number" id="read_detalles_ID_playlist" placeholder="ID de la playlist"><br><br>
+
+        <button class="btn btn-read" onclick="pestañaDetallesPlaylist()">Ver en nueva pestaña</button>
 
 </div>
 
@@ -261,7 +290,7 @@
             document.getElementById('resultado').textContent = JSON.stringify(datos, null, 2);
         }
 
-        async function agregarCancion() {
+async function agregarCancion() {
     const body = {
         id_album: Number(document.getElementById('idAlbum').value),
         id_artista: Number(document.getElementById('idArtista').value),
@@ -270,24 +299,23 @@
         duracion: Number(document.getElementById('duracionCancion').value),
         contenido: document.getElementById('contenidoLetra').value
     };
-
+    const pre = document.getElementById('resultadoInsercion');
+    const query =
+	`INSERT INTO canciones (id_album, id_artista, id_genero, nombre, duracion, letras)
+	VALUES ($1, $2, $3, $4, $5, $6::jsonb)
+	RETURNING id`;
     try {
         const respuesta = await fetch('/api/canciones', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         });
-
         const datos = await respuesta.json();
-
-        document.getElementById('resultadoInsercion').textContent =
-            JSON.stringify(datos, null, 2);
-
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
     } catch (error) {
-        document.getElementById('resultadoInsercion').textContent =
-            `Error: ${error.message}`;
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
     }
 }
 
