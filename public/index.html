@@ -23,6 +23,7 @@
 
 <br>
 
+   <h2>CRUD</h2>
 <div class="text-columns">
   <div class="col-text">(C)reate</div>
   <div class="col-divider" style="background: #22c55e;"></div> 
@@ -55,28 +56,30 @@
 <div id="formAgregarCancion" style="display:none;">
     <h2>Agregar Canción</h2>
 
-<input type="number" id="idAlbum" placeholder="ID Álbum"><br><br>
-
-<input type="number" id="idArtista" placeholder="ID Artista"><br><br>
-
-<input type="number" id="idGeneroCancion" placeholder="ID Género"><br><br>
-
-<input type="text" id="nombreCancion" placeholder="Nombre de la canción"><br><br>
-
-<input type="number" id="duracionCancion" placeholder="Duración"><br><br>
-
-<textarea
-    id="contenidoLetra"
-    placeholder="Contenido de la letra"
-    rows="5"
-    cols="50">
-</textarea>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 600px;">
+        
+        <input type="number" id="idAlbum" placeholder="ID Álbum">
+        <input type="number" id="idArtista" placeholder="ID Artista">
+        <input type="number" id="idGeneroCancion" placeholder="ID Género">
+        <input type="number" id="duracionCancion" placeholder="Duración">
+        
+        <!-- Hacemos que el nombre y la letra ocupen ambas columnas -->
+        <input type="text" id="nombreCancion" placeholder="Nombre de la canción" style="grid-column: 1 / -1;">
+        
+	<textarea
+  	  id="contenidoLetra"
+  	  placeholder="Contenido de la letra"
+  	  rows="5"
+  	  style="grid-column: 1 / -1; width: 100%; box-sizing: border-box;"></textarea>
+        
+    </div>
 
 <br>
 
   <button class="btn btn-create" onclick="agregarCancion()">Agregar CANCION</button>
 
-<h3>Resultado inserción</h3>
+
+<h3 style="margin-top: 10px;">Resultado inserción</h3>
 <pre id="resultadoInsercion"></pre>
 
 <hr>
@@ -92,7 +95,7 @@
 
         <button class="btn btn-create" onclick="insertarUsuario()">Agregar USUARIO</button>
 
-	<h3>Resultado inserción</h3>
+	<h3 style="margin-top: 10px;">Resultado inserción</h3>
 	<pre id="resultado_insercion_usuario"></pre>
 	<hr>
 
@@ -107,7 +110,7 @@
 
         <button class="btn btn-create" onclick="insertarDetalle_playlist()">Agregar DETALLE_PLAYLIST</button>
 
-	<h3>Resultado inserción</h3>
+	<h3 style="margin-top: 10px;">Resultado inserción</h3>
 	<pre id="resultado_insercion_detalle"></pre>
 	<hr>
 
@@ -141,6 +144,53 @@
         <button class="btn btn-read" onclick="pestañaDetallesPlaylist()">Ver en nueva pestaña</button>
 
 </div>
+
+<br>
+   <h2>Reportes</h2>
+<div class="grid-4">
+  <button class="btn btn-create" onclick="toggleForm('formREPORTE1')">REPORTE1</button>
+  <button class="btn btn-read"   onclick="toggleForm('formREPORTE2')">REPORTE2</button>
+  <button class="btn btn-update" onclick="toggleForm('formREPORTE3')">REPORTE3</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE4')">REPORTE4</button>
+</div>
+<br>
+
+<div>
+   <h2>Diseño de Modulo NOSQL</h2>
+   <button class="btn btn-update" onclick="verPestañaNOSQL">Abrir pestaña con explicacion</button>
+</div>
+<br>
+
+   <h2>Pruebas de Optimizacion</h2>
+<div class="text-columns">
+  <div class="col-text">Tabla</div>
+  <div class="col-divider" style="background: #22c55e;"></div> 
+  <div class="col-text">Generacion de registros</div>
+  <div class="col-divider" style="background: #f97316;"></div>
+  <div class="col-text">Eliminacion de registros</div>
+  <div class="col-divider" style="background: #3b82f6;"></div> 
+  <div class="col-text">Consulta</div>
+</div>
+
+<div class="grid-4">
+  <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">USUARIOS:</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadCancionAlbum')">Genera hasta 6000 registros (id>12) </button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">Eliminar registros (id>12) </button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">Busqueda por correo usuario500@test.com</button>
+
+  <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">HISTORIALES:</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadUsuariosCorreo')">Genera hasta 1000 registros</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">Elimina todos los registros</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">Canciones pertenecientes al usuario 3 en un periodo de tiempo</button>
+</div>
+<br>
+
+<div>
+   <h2>Indice compuesto en Historiales</h2>
+   <button class="btn btn-read" onclick="toggleForm('formPestañaNOSQL')">Crear indice</button>
+   <button class="btn btn-read" onclick="toggleForm('formPestañaNOSQL')">Eliminar indice</button>
+</div>
+<br>
 
     <h2>Canciones bien calificadas por género</h2>
     <button onclick="descargarCSV()">
