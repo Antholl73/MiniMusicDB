@@ -65,6 +65,7 @@ app.use(require('./routes/totalCanciones'));
 // Funciones del CRUD
 app.use(require('./routes/CRUDinsertarDetalle'));
 app.use(require('./routes/CRUDinsertarUsuario'));
+app.use(require('./routes/CRUD_READ'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
