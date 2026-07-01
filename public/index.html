@@ -161,7 +161,7 @@
 </div>
 <br>
 
-   <h2>Pruebas de Optimizacion</h2>
+   <h2>Prueba de Optimizacion</h2>
 <div class="text-columns">
   <div class="col-text">Tabla</div>
   <div class="col-divider" style="background: #22c55e;"></div> 
@@ -173,24 +173,32 @@
 </div>
 
 <div class="grid-4">
-  <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">USUARIOS:</button>
-  <button class="btn btn-read"   onclick="toggleForm('formReadCancionAlbum')">Genera hasta 6000 registros (id>12) </button>
-  <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">Eliminar registros (id>12) </button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">Busqueda por correo usuario500@test.com</button>
-
-  <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">HISTORIALES:</button>
-  <button class="btn btn-read"   onclick="toggleForm('formReadUsuariosCorreo')">Genera hasta 1000 registros</button>
-  <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">Elimina todos los registros</button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">Canciones pertenecientes al usuario 3 en un periodo de tiempo</button>
+  <button class="btn btn-update" onclick="toggleForm('formAgregarUsuario')">HISTORIALES:</button>
+  <button class="btn btn-create"   onclick="toggleForm('formReadUsuariosCorreo')">Genera hasta 1000 registros</button>
+  <button class="btn btn-delete" onclick="toggleForm('formUpdateUsuario')">Elimina todos los registros</button>
+  <button class="btn btn-read" onclick="toggleForm('formDeleteUsuario')">Canciones pertenecientes al usuario 3 en un periodo de tiempo</button>
 </div>
 <br>
 
 <div>
    <h2>Indice compuesto en Historiales</h2>
-   <button class="btn btn-read" onclick="toggleForm('formPestañaNOSQL')">Crear indice</button>
-   <button class="btn btn-read" onclick="toggleForm('formPestañaNOSQL')">Eliminar indice</button>
+   <button class="btn btn-create" onclick="toggleForm('formPestañaNOSQL')">Crear indice</button>
+   <button class="btn btn-delete" onclick="toggleForm('formPestañaNOSQL')">Eliminar indice</button>
 </div>
 <br>
+
+<div>
+   <h2>Transaccion ACID - Creacion de Playlist</h2>
+    <input type="text" id="nombrePlaylist" placeholder="Nombre de la playlist"><br><br>
+    <input type="text" id="cancionesPlaylist" placeholder="IDs de canciones(1,2,3)"><br><br>
+
+   <button class="btn btn-create" onclick="crearPlaylist()">Crear playlist</button>
+   <h3 style="margin-top: 10px;">Resultado de la transaccion</h3>
+   <pre id="resultadoPlaylist"></pre>
+</div>
+<br>
+
+
 
     <h2>Canciones bien calificadas por género</h2>
     <button onclick="descargarCSV()">
@@ -309,16 +317,6 @@
     <hr>
 
     <div id="toast-container"></div>
-
-    <h2>Crear Playlist (Transacción ACID)</h2>
-    <input type="text" id="nombrePlaylist" placeholder="Nombre de la playlist"><br><br>
-    <input type="text" id="cancionesPlaylist" placeholder="IDs de canciones(1,2,3)"><br><br>
-    <button onclick="crearPlaylist()">
-        Crear Playlist
-    </button>
-    <pre id="resultadoPlaylist"></pre>
-
-
 
     <script src="toasts.js"></script>
     <script>
