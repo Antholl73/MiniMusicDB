@@ -53,7 +53,6 @@ app.use(require('./routes/crearPlaylist'));
 app.use(require('./routes/cancionesporGenero'));
 app.use(require('./routes/totalUsuarios'));
 app.use(require('./routes/aniadircancionAlbum'));
-app.use(require('./routes/generosReproducciones'));
 app.use(require('./routes/cancionesPopularesGenero'));
 app.use(require('./routes/generosTendencia'));
 app.use(require('./routes/cancionesTendenciaGenero'));
