@@ -36,6 +36,7 @@ app.get('/api/db-test', async (req, res) => {
 const rutaTablas = require('./routes/tablas');
 app.use('/api/total-tablas', rutaTablas);
 
+// Funciones de OPTIMIZACIÓN 
 app.use(require('./routes/generarUsuarios'));
 app.use(require('./routes/explainUsuarios'));
 app.use(require('./routes/borrarUsuarios'));
@@ -47,18 +48,21 @@ app.use(require('./routes/borrarHistoriales'));
 app.use(require('./routes/crearIndiceHistoriales'));
 app.use(require('./routes/borrarIndiceHistoriales'));
 
+// Funciones INICIALES de prueba 
 app.use(require('./routes/registrarCancion'));
 app.use(require('./routes/cancionesporAlbum'));
 app.use(require('./routes/crearPlaylist'));
 app.use(require('./routes/cancionesporGenero'));
 app.use(require('./routes/totalUsuarios'));
 app.use(require('./routes/aniadircancionAlbum'));
+// Funciones de REPORTES
 app.use(require('./routes/cancionesPopularesGenero'));
 app.use(require('./routes/generosTendencia'));
 app.use(require('./routes/cancionesTendenciaGenero'));
 app.use(require('./routes/discograficasVirales'));
 app.use(require('./routes/artistasTendencia'));
 app.use(require('./routes/hitsSemana'));
+// Miscelaneo 
 app.use(require('./routes/totalCanciones'));
 
 // Funciones del CRUD
