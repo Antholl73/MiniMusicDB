@@ -48,7 +48,7 @@
   <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">DETALLES_PLAYLIST</button>
   <button class="btn btn-read"   onclick="toggleForm('formReadDetallesPlaylist')">DETALLES DENTRO DE UNA PLAYLIST</button>
   <button class="btn btn-update" onclick="toggleForm('formUpdateDetalle')">SWAP POSICION</button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID)</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (PLAYLIST_ID,CANCION_ID)</button>
 </div>
 <br>
 
@@ -172,6 +172,7 @@
 	<input type="text" id="update_usuario_nombre" placeholder="Nuevo nombre del usuario"><br><br>
 
         <button class="btn btn-update" onclick="updateCorreoNombreUsuario()">Actualizar registro</button>
+
 	<h3 style="margin-top: 10px;">Resultado update</h3>
 	<div id="resultado_update_usuario"></div>
 	<hr>
@@ -185,7 +186,10 @@
 	<input type="number" id="update_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
 	<input type="number" id="update_detalle_posicion" placeholder="Nueva posicion"><br><br>
 
-        <button class="btn btn-update" onclick="updateSwapDetalle()">Actualizar registro</button>
+        <button class="btn btn-update" onclick="updateSwapPosicionDetalle()">Actualizar registro</button>
+
+	<h3 style="margin-top: 10px;">Resultado update</h3>
+	<div id="resultado_update_detalle"></div>
 	<hr>
 </div>
 

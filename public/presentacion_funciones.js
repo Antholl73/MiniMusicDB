@@ -205,6 +205,45 @@ RETURNING id, correo, nombre`;
     } catch (error) {
         pre.innerHTML = cardError({ mensaje: error.message }, query);
     }
+}
+
+async function updateSwapPosicionDetalle() {
+    const id_playlist = Number(document.getElementById('update_detalle_ID_playlist').value);
+    const id_cancion = Number(document.getElementById('update_detalle_ID_cancion').value);
+    const nueva_posicion = Number(document.getElementById('update_detalle_posicion').value);
+    const pre = document.getElementById('resultado_update_detalle');
+
+    const query =
+`-- Paso 1: mover cancion origen a posicion temporal
+UPDATE detalles_playlist SET posicion = -1
+WHERE id_playlist = $1 AND id_cancion = $2
+
+-- Paso 2: mover cancion destino a posicion origen
+UPDATE detalles_playlist SET posicion = $3
+WHERE id_playlist = $1 AND id_cancion = $4
+
+-- Paso 3: mover cancion origen a posicion destino
+UPDATE detalles_playlist SET posicion = $5
+WHERE id_playlist = $1 AND id_cancion = $2`;
+
+    if (!id_playlist || !id_cancion || !nueva_posicion) {
+        pre.innerHTML = cardError({ mensaje: 'Todos los campos son obligatorios.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/update_detalle_playlist', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_playlist, id_cancion, nueva_posicion })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
 }      
 
 // SECCION DE DELETE      
