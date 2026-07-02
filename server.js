@@ -74,6 +74,7 @@ app.use(require('./routes/CRUD_READ'));
 // UPDATE
 app.use(require('./routes/CRUD_UPDATE'));
 // DELETE
+app.use(require('./routes/CRUD_DELETE'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
