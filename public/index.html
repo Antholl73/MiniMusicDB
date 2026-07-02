@@ -119,7 +119,7 @@
 <!-- Formulario dinamico para READ canciones dentro de un album CRUD -->
 <div id="formReadCancionAlbum" style="display:none;">
 
-  <h2>Ver las canciones dentro de un album</h2>
+  <h2>Ver las <span style="color: #FF8C00;">canciones</span> dentro de un album</h2>
 	<input type="number" id="read_canciones_ID_album" placeholder="ID del album"><br><br>
 
         <button class="btn btn-read" onclick="pestañaCancionesAlbum()">Ver en nueva pestaña</button>
@@ -130,7 +130,7 @@
 <!-- Formulario dinamico para READ usuarios del dominio Gmail CRUD -->
 <div id="formReadUsuariosCorreo" style="display:none;">
 
-  <h2>Ver los usuarios de correo Gmail</h2>
+  <h2>Ver los <span style="color: #FF8C00;">usuarios</span> de correo Gmail</h2>
 
         <button class="btn btn-read" onclick="pestañaUsuariosCorreo()">Ver en nueva pestaña</button>
 	<hr>
@@ -140,7 +140,7 @@
 <!-- Formulario dinamico para READ canciones dentro de una playlist CRUD -->
 <div id="formReadDetallesPlaylist" style="display:none;">
 
-  <h2>Ver los detalles_playlist dentro de una playlist</h2>
+  <h2>Ver los <span style="color: #FF8C00;">detalles_playlist</span> dentro de una playlist</h2>
 	<input type="number" id="read_detalles_ID_playlist" placeholder="ID de la playlist"><br><br>
 
         <button class="btn btn-read" onclick="pestañaDetallesPlaylist()">Ver en nueva pestaña</button>
@@ -151,7 +151,7 @@
 <!-- Formulario dinamico para UPDATE nombre + genero de canciones CRUD -->
 <div id="formUpdateCancion" style="display:none;">
 
-  <h2>Actualizar el nombre y genero de una cancion</h2>
+  <h2>Actualizar el nombre y genero de una <span style="color: #00D2FF;">cancion</span></h2>
 	<input type="text" id="update_cancion_ID" placeholder="ID de la cancion"><br><br>
 	<input type="text" id="update_cancion_nombre" placeholder="Nuevo nombre de la cancion"><br><br>
 	<input type="number" id="update_cancion_genero" placeholder="Nuevo genero de la cancion"><br><br>
@@ -163,10 +163,10 @@
 <!-- Formulario dinamico para UPDATE correo + nombre de usuarios CRUD -->
 <div id="formUpdateUsuario" style="display:none;">
 
-  <h2>Actualizar el nombre y correo de un usuario</h2>
+  <h2>Actualizar el correo y nombre de un <span style="color: #00D2FF;">usuario</span></h2>
 	<input type="number" id="update_ID_usuario" placeholder="ID del usuario"><br><br>
-	<input type="text" id="update_usuario_correo" placeholder="Correo del usuario"><br><br>
-	<input type="text" id="update_usuario_nombre" placeholder="Nombre del usuario"><br><br>
+	<input type="text" id="update_usuario_correo" placeholder="Nuevo correo del usuario"><br><br>
+	<input type="text" id="update_usuario_nombre" placeholder="Nuevo nombre del usuario"><br><br>
 
         <button class="btn btn-update" onclick="updateCorreoNombreUsuario()">Actualizar registro</button>
 	<hr>
@@ -175,7 +175,7 @@
 <!-- Formulario dinamico para UPDATE swap posicion de detalles_playlist CRUD -->
 <div id="formUpdateDetalle" style="display:none;">
 
-  <h2>Hacer un swap de posiciones entre dos detalles</h2>
+  <h2>Hacer un swap de posiciones entre dos <span style="color: #00D2FF;">detalles</span></h2>
 	<input type="number" id="update_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
 	<input type="number" id="update_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
 	<input type="number" id="update_detalle_posicion" placeholder="Nueva posicion"><br><br>
@@ -187,7 +187,7 @@
 <!-- Formulario dinamico para DELETE cancion CRUD -->
 <div id="formDeleteCancion" style="display:none;">
 
-  <h2>Elimina la cancion segun su ID</h2>
+  <h2>Elimina la <span style="color: #FF3333;">cancion</span> segun su ID</h2>
 	<input type="number" id="delete_cancion_ID_cancion" placeholder="ID de la cancion"><br><br>
 
         <button class="btn btn-delete" onclick="deleteCancion()">Borrar registro</button>
@@ -197,7 +197,7 @@
 <!-- Formulario dinamico para DELETE usuario CRUD -->
 <div id="formDeleteUsuario" style="display:none;">
 
-  <h2>Elimina el usuario segun su ID</h2>
+  <h2>Elimina el <span style="color: #FF3333;">usuario</span> segun su ID</h2>
 	<input type="number" id="delete_usuario_ID_usuario" placeholder="ID del usuario"><br><br>
 
         <button class="btn btn-delete" onclick="deleteUsuario()">Borrar registro</button>
@@ -207,7 +207,7 @@
 <!-- Formulario dinamico para DELETE detalle_playlist CRUD -->
 <div id="formDeleteDetalle" style="display:none;">
 
-  <h2>Elimina el detalle segun su playlist ID y cancion ID</h2>
+  <h2>Elimina el <span style="color: #FF3333;">detalle</span> segun su playlist ID y cancion ID</h2>
 	<input type="number" id="delete_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
 	<input type="number" id="delete_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
 
