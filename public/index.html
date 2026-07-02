@@ -54,7 +54,7 @@
 
 <!-- Formulario dinamico para CREATE insertar cancion CRUD -->
 <div id="formAgregarCancion" style="display:none;">
-    <h2>Agregar Canción</h2>
+    <h2>Insertar <span style="color: #2ECC71;">Canción</span></h2>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 600px;">
         
@@ -89,7 +89,7 @@
 <!-- Formulario dinamico para CREATE insertar usuario CRUD -->
 <div id="formAgregarUsuario" style="display:none;">
 
-  <h2>Insertar Usuario</h2>
+  <h2>Insertar <span style="color: #2ECC71;">Usuario</span></h2>
 	<input type="text" id="insercion_usuario_correo" placeholder="Correo del usuario"><br><br>
 	<input type="text" id="insercion_usuario_nombre" placeholder="Nombre del usuario"><br><br>
 
@@ -104,7 +104,7 @@
 <!-- Formulario dinamico para CREATE insertar detalle_playlist CRUD -->
 <div id="formAgregarDetalle" style="display:none;">
 
-  <h2>Insertar Detalle_playlist</h2>
+  <h2>Insertar <span style="color: #2ECC71;">Detalle_playlist</span></h2>
 	<input type="number" id="insercion_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
 	<input type="number" id="insercion_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
 
@@ -123,6 +123,7 @@
 	<input type="number" id="read_canciones_ID_album" placeholder="ID del album"><br><br>
 
         <button class="btn btn-read" onclick="pestañaCancionesAlbum()">Ver en nueva pestaña</button>
+	<hr>
 
 </div>
 
@@ -132,6 +133,7 @@
   <h2>Ver los usuarios de correo Gmail</h2>
 
         <button class="btn btn-read" onclick="pestañaUsuariosCorreo()">Ver en nueva pestaña</button>
+	<hr>
 
 </div>
 
@@ -142,6 +144,7 @@
 	<input type="number" id="read_detalles_ID_playlist" placeholder="ID de la playlist"><br><br>
 
         <button class="btn btn-read" onclick="pestañaDetallesPlaylist()">Ver en nueva pestaña</button>
+	<hr>
 
 </div>
 
@@ -154,7 +157,7 @@
 	<input type="number" id="update_cancion_genero" placeholder="Nuevo genero de la cancion"><br><br>
 
         <button class="btn btn-update" onclick="updateNombreGeneroCancion()">Actualizar registro</button>
-
+	<hr>
 </div>
 
 <!-- Formulario dinamico para UPDATE correo + nombre de usuarios CRUD -->
@@ -166,7 +169,7 @@
 	<input type="text" id="update_usuario_nombre" placeholder="Nombre del usuario"><br><br>
 
         <button class="btn btn-update" onclick="updateCorreoNombreUsuario()">Actualizar registro</button>
-
+	<hr>
 </div>
 
 <!-- Formulario dinamico para UPDATE swap posicion de detalles_playlist CRUD -->
@@ -178,8 +181,41 @@
 	<input type="number" id="update_detalle_posicion" placeholder="Nueva posicion"><br><br>
 
         <button class="btn btn-update" onclick="updateSwapDetalle()">Actualizar registro</button>
-
+	<hr>
 </div>
+
+<!-- Formulario dinamico para DELETE cancion CRUD -->
+<div id="formDeleteCancion" style="display:none;">
+
+  <h2>Elimina la cancion segun su ID</h2>
+	<input type="number" id="delete_cancion_ID_cancion" placeholder="ID de la cancion"><br><br>
+
+        <button class="btn btn-delete" onclick="deleteCancion()">Borrar registro</button>
+	<hr>
+</div>
+
+<!-- Formulario dinamico para DELETE usuario CRUD -->
+<div id="formDeleteUsuario" style="display:none;">
+
+  <h2>Elimina el usuario segun su ID</h2>
+	<input type="number" id="delete_usuario_ID_usuario" placeholder="ID del usuario"><br><br>
+
+        <button class="btn btn-delete" onclick="deleteUsuario()">Borrar registro</button>
+	<hr>
+</div>
+
+<!-- Formulario dinamico para DELETE detalle_playlist CRUD -->
+<div id="formDeleteDetalle" style="display:none;">
+
+  <h2>Elimina el detalle segun su playlist ID y cancion ID</h2>
+	<input type="number" id="delete_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
+	<input type="number" id="delete_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
+
+        <button class="btn btn-delete" onclick="deleteDetalle()">Borrar registro</button>
+	<hr>
+</div>
+
+
 
 <br>
    <h2>Reportes</h2>

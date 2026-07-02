@@ -160,3 +160,8 @@ textarea:focus {
     border: 2px solid #3b82f6;
     box-shadow: 0 0 0 3px rgba(207, 250, 254, 0.2);
 }
+
+hr {
+    margin-top: 8px; /* Adjust this value to add more space */
+    margin-bottom: 4px;
+}
