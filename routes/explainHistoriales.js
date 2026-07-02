@@ -12,14 +12,14 @@ router.get('/api/explainHistoriales/:idUsuario', async (req, res) => {
       });
     }
 
-    const result = await pool.query(`
-      EXPLAIN (ANALYZE, BUFFERS)
-      SELECT *
-      FROM historiales
-      WHERE id_usuario = $1
-        AND fecha >= '2021-01-01'
-        AND fecha < '2027-01-01'
-    `, [idUsuario]);
+const result = await pool.query(`
+    EXPLAIN ANALYZE
+    SELECT *
+    FROM historiales
+    WHERE id_usuario = $1
+      AND fecha >= '2021-01-01'
+      AND fecha < '2027-01-01'
+`, [idUsuario]);
 
     res.json(result.rows);
 

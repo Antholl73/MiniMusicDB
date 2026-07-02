@@ -4,7 +4,6 @@ const pool = require('../dataBase');
 
 router.get('/api/crearIndiceHistoriales', async (req, res) => {
   try {
-
     const existe = await pool.query(`
       SELECT 1
       FROM pg_indexes
@@ -13,8 +12,8 @@ router.get('/api/crearIndiceHistoriales', async (req, res) => {
     `);
 
     if (existe.rowCount > 0) {
-      return res.json({
-        mensaje: 'El índice ya existe.'
+      return res.status(409).json({
+        error: 'El índice ya existe.'
       });
     }
 
