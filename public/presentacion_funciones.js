@@ -167,6 +167,44 @@ RETURNING id, nombre, id_genero`;
     } catch (error) {
         pre.innerHTML = cardError({ mensaje: error.message }, query);
     }
+}
+
+async function updateCorreoNombreUsuario() {
+    const id = document.getElementById('update_ID_usuario').value;
+    const correo = document.getElementById('update_usuario_correo').value;
+    const nombre = document.getElementById('update_usuario_nombre').value;
+    const pre = document.getElementById('resultado_update_usuario');
+
+    const query =
+`UPDATE usuarios
+SET correo = $2, nombre = $3
+WHERE id = $1
+RETURNING id, correo, nombre`;
+
+    if (!id || !correo || !nombre) {
+        pre.innerHTML = cardError({ mensaje: 'Todos los campos son obligatorios.' }, query);
+        return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(correo)) {
+        pre.innerHTML = cardError({ mensaje: 'El correo no tiene un formato válido.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/update_usuario', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, correo, nombre })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
 }      
 
 // SECCION DE DELETE      
