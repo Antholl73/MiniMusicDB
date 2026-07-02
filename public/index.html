@@ -238,11 +238,11 @@
    <h2>Reportes</h2>
 <div class="grid-3">
   <button class="btn btn-create" onclick="toggleForm('formArtistaTendencia')">Artistas Tendencia</button>
-  <button class="btn btn-read"   onclick="toggleForm('formREPORTE2')">Cancioness Populares Genero</button>
-  <button class="btn btn-update" onclick="toggleForm('formREPORTE3')">Canciones Tendencia Genero</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE4')">Discograficas Virales</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE5')">Generos Tendencia</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE6')">Hits Semana</button>
+  <button class="btn btn-read"   onclick="toggleForm('formCancionesPopularesGenero')">Cancioness Populares Genero</button>
+  <button class="btn btn-update" onclick="toggleForm('formCancionesTendenciaGenero')">Canciones Tendencia Genero</button>
+  <button class="btn btn-delete" onclick="toggleForm('formdiscograficasVirales')">Discograficas Virales</button>
+  <button class="btn btn-delete" onclick="toggleForm('formGenerosTendencia')">Generos Tendencia</button>
+  <button class="btn btn-delete" onclick="toggleForm('formHitsSemana')">Hits Semana</button>
 </div>
 <br>
 
@@ -254,14 +254,14 @@
   <hr>
 </div>
 
-<div id="formREPORTE2" style="display:none;">
+<div id="formCancionesPopularesGenero" style="display:none;">
   <h2>Ver reporte <span style="color: #FF8C00;">Canciones Populares Género</span></h2>
   <input type="number" id="reporte2_id_genero" placeholder="ID del Género"><br><br>
   <button class="btn btn-read" onclick="descargarCancionesPopularesGenero()">Ver Reporte</button>
   <hr>
 </div>
 
-<div id="formREPORTE3" style="display:none;">
+<div id="formCancionesTendenciaGenero" style="display:none;">
   <h2>Ver reporte <span style="color: #00D2FF;">Canciones Tendencia Género</span></h2>
   <input type="number" id="reporte3_id_genero" placeholder="ID del Género">
   <input type="date" id="reporte3_fecha_inicio" placeholder="Fecha Inicio">
@@ -270,7 +270,7 @@
   <hr>
 </div>
 
-<div id="formREPORTE4" style="display:none;">
+<div id="formdiscograficasVirales" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Discográficas Virales</span></h2>
   <input type="date" id="reporte4_fecha_inicio" placeholder="Fecha Inicio">
   <input type="date" id="reporte4_fecha_fin" placeholder="Fecha Fin"><br><br>
@@ -278,14 +278,14 @@
   <hr>
 </div>
 
-<div id="formREPORTE5" style="display:none;">
+<div id="formGenerosTendencia" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Géneros Tendencia</span></h2>
   <p>Tendencias de los últimos 30 días</p>
   <button class="btn btn-delete" onclick="descargarGenerosTendencia()">Ver Reporte</button>
   <hr>
 </div>
 
-<div id="formREPORTE6" style="display:none;">
+<div id="formHitsSemana" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Hits de la Semana</span></h2>
   <input type="date" id="reporte6_fecha_inicio" placeholder="Fecha Inicio">
   <input type="date" id="reporte6_fecha_fin" placeholder="Fecha Fin"><br><br>
