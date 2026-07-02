@@ -47,7 +47,7 @@
 
   <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">DETALLES_PLAYLIST</button>
   <button class="btn btn-read"   onclick="toggleForm('formReadDetallesPlaylist')">DETALLES DENTRO DE UNA PLAYLIST</button>
-  <button class="btn btn-update" onclick="toggleForm('formSwapPosicion')">SWAP POSICION</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateDetalle')">SWAP POSICION</button>
   <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (CANCION_ID,USUARIO_ID)</button>
 </div>
 <br>
@@ -145,13 +145,51 @@
 
 </div>
 
+<!-- Formulario dinamico para UPDATE nombre + genero de canciones CRUD -->
+<div id="formUpdateCancion" style="display:none;">
+
+  <h2>Actualizar el nombre y genero de una cancion</h2>
+	<input type="text" id="update_cancion_ID" placeholder="ID de la cancion"><br><br>
+	<input type="text" id="update_cancion_nombre" placeholder="Nuevo nombre de la cancion"><br><br>
+	<input type="number" id="update_cancion_genero" placeholder="Nuevo genero de la cancion"><br><br>
+
+        <button class="btn btn-update" onclick="updateNombreGeneroCancion()">Actualizar registro</button>
+
+</div>
+
+<!-- Formulario dinamico para UPDATE correo + nombre de usuarios CRUD -->
+<div id="formUpdateUsuario" style="display:none;">
+
+  <h2>Actualizar el nombre y correo de un usuario</h2>
+	<input type="number" id="update_ID_usuario" placeholder="ID del usuario"><br><br>
+	<input type="text" id="update_usuario_correo" placeholder="Correo del usuario"><br><br>
+	<input type="text" id="update_usuario_nombre" placeholder="Nombre del usuario"><br><br>
+
+        <button class="btn btn-update" onclick="updateCorreoNombreUsuario()">Actualizar registro</button>
+
+</div>
+
+<!-- Formulario dinamico para UPDATE swap posicion de detalles_playlist CRUD -->
+<div id="formUpdateDetalle" style="display:none;">
+
+  <h2>Hacer un swap de posiciones entre dos detalles</h2>
+	<input type="number" id="update_detalle_ID_playlist" placeholder="ID de la playlist"><br><br>
+	<input type="number" id="update_detalle_ID_cancion" placeholder="ID de la cancion"><br><br>
+	<input type="number" id="update_detalle_posicion" placeholder="Nueva posicion"><br><br>
+
+        <button class="btn btn-update" onclick="updateSwapDetalle()">Actualizar registro</button>
+
+</div>
+
 <br>
    <h2>Reportes</h2>
-<div class="grid-4">
+<div class="grid-3">
   <button class="btn btn-create" onclick="toggleForm('formREPORTE1')">REPORTE1</button>
   <button class="btn btn-read"   onclick="toggleForm('formREPORTE2')">REPORTE2</button>
   <button class="btn btn-update" onclick="toggleForm('formREPORTE3')">REPORTE3</button>
   <button class="btn btn-delete" onclick="toggleForm('formREPORTE4')">REPORTE4</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE5')">REPORTE5</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE6')">REPORTE6</button>
 </div>
 <br>
 
