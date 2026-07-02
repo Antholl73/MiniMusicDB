@@ -35,20 +35,20 @@
 </div>
 
 <div class="grid-4">
-  <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">CANCION</button>
-  <button class="btn btn-read"   onclick="toggleForm('formReadCancionAlbum')">CANCIONES DENTRO DE UN ALBUM</button>
-  <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">NOMBRE + GENERO</button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">DELETE DE CANCION SEGUN SU ID</button>
+  <button class="btn btn-create" onclick="toggleForm('formAgregarCancion')">Cancion</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadCancionAlbum')">Canciones dentro de un Album</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateCancion')">Nombre + Genero</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteCancion')">Delete de Cancion segun su ID</button>
 
-  <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">USUARIO</button>
-  <button class="btn btn-read"   onclick="toggleForm('formReadUsuariosCorreo')">USUARIOS DE CORREO GMAIL</button>
-  <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">CORREO + NOMBRE</button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">DELETE DE USUARIO SEGUN SU ID</button>
+  <button class="btn btn-create" onclick="toggleForm('formAgregarUsuario')">Usuario</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadUsuariosCorreo')">Usuarios con correo Gmail</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateUsuario')">Correo + Nombre</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteUsuario')">Delete de Usuario segun su ID</button>
 
-  <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">DETALLES_PLAYLIST</button>
-  <button class="btn btn-read"   onclick="toggleForm('formReadDetallesPlaylist')">DETALLES DENTRO DE UNA PLAYLIST</button>
-  <button class="btn btn-update" onclick="toggleForm('formUpdateDetalle')">SWAP POSICION</button>
-  <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">DELETE DE DETALLE SEGUN SU (PLAYLIST_ID,CANCION_ID)</button>
+  <button class="btn btn-create" onclick="toggleForm('formAgregarDetalle')">Detalles_playlist</button>
+  <button class="btn btn-read"   onclick="toggleForm('formReadDetallesPlaylist')">Detalles dentro de una playlist</button>
+  <button class="btn btn-update" onclick="toggleForm('formUpdateDetalle')">Swap posicion</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteDetalle')">Delete de Detalle segun su (playlist_id,cancion_id)</button>
 </div>
 <br>
 
@@ -237,12 +237,12 @@
 <br>
    <h2>Reportes</h2>
 <div class="grid-3">
-  <button class="btn btn-create" onclick="toggleForm('formArtistaTendencia')">Artistas Tendencia</button>
-  <button class="btn btn-read"   onclick="toggleForm('formCancionesPopularesGenero')">Cancioness Populares Genero</button>
-  <button class="btn btn-update" onclick="toggleForm('formCancionesTendenciaGenero')">Canciones Tendencia Genero</button>
+  <button class="btn btn-create" onclick="toggleForm('formArtistaTendencia')">Artistas en Tendencia</button>
+  <button class="btn btn-read"   onclick="toggleForm('formCancionesPopularesGenero')">Canciones Populares por Genero</button>
+  <button class="btn btn-update" onclick="toggleForm('formCancionesTendenciaGenero')">Canciones en Tendencia por Genero</button>
   <button class="btn btn-delete" onclick="toggleForm('formdiscograficasVirales')">Discograficas Virales</button>
-  <button class="btn btn-delete" onclick="toggleForm('formGenerosTendencia')">Generos Tendencia</button>
-  <button class="btn btn-delete" onclick="toggleForm('formHitsSemana')">Hits Semana</button>
+  <button class="btn btn-delete" onclick="toggleForm('formGenerosTendencia')">Generos en Tendencia</button>
+  <button class="btn btn-delete" onclick="toggleForm('formHitsSemana')">Hits de la Semana</button>
 </div>
 <br>
 
@@ -299,10 +299,8 @@
 </div>
 <br>
 
-   <h2>Prueba de Optimizacion</h2>
+   <h2>Prueba de Optimizacion - Tabla Historiales</h2>
 <div class="text-columns">
-  <div class="col-text">Tabla</div>
-  <div class="col-divider" style="background: #22c55e;"></div> 
   <div class="col-text">Generacion de registros</div>
   <div class="col-divider" style="background: #f97316;"></div>
   <div class="col-text">Eliminacion de registros</div>
@@ -311,141 +309,75 @@
 </div>
 
 <div class="grid-4">
-  <button class="btn btn-update" onclick="toggleForm('formAgregarUsuario')">HISTORIALES:</button>
-  <button class="btn btn-create"   onclick="toggleForm('formReadUsuariosCorreo')">Genera hasta 1000 registros</button>
-  <button class="btn btn-delete" onclick="toggleForm('formUpdateUsuario')">Elimina todos los registros</button>
-  <button class="btn btn-read" onclick="toggleForm('formDeleteUsuario')">Canciones pertenecientes al usuario 3 en un periodo de tiempo</button>
+  <button class="btn btn-create"   onclick="toggleForm('formOptimizacionCreate')">Genera hasta 1000 registros</button>
+  <button class="btn btn-delete" onclick="toggleForm('formOptimizacionDelete')">Elimina todos los registros</button>
+  <button class="btn btn-read" onclick="toggleForm('formOptimizacionConsulta')">Canciones pertenecientes al usuario 3 en un periodo de tiempo</button>
 </div>
 <br>
+
+<div id="formOptimizacionCreate" style="display:none;">
+  <h2>Generar 1000 registros en la tabla <span style="color: #2ECC71;">Historiales</span></h2>
+  <button class="btn btn-create" onclick="generarHistoriales()">Generar registros</button>
+
+  <h3 style="margin-top: 10px;">Resultado Generacion</h3>
+  <div id="resultadoGeneracionHistoriales"></div>
+  <hr>
+
+</div>
+
+<div id="formOptimizacionDelete" style="display:none;">
+  <h2>Eliminar todos los registros en la tabla <span style="color: #FF3333;">Historiales</span></h2>
+  <button class="btn btn-delete" onclick="borrarHistoriales()">Eliminar registros</button>
+
+  <h3 style="margin-top: 10px;">Resultado Borrado</h3>
+  <div id="resultadoBorradoHistoriales"></div>
+  <hr>
+</div>
+
+<div id="formOptimizacionConsulta" style="display:none;">
+  <h2>Canciones pertenecientes al usuario ID = 3 en un periodo de tiempo <span style="color: #FF8C00;">2021-2027</span></h2>
+  <button class="btn btn-read" onclick="explainHistoriales()">Realizar consulta</button>
+
+  <h3 style="margin-top: 10px;">Resultado Consulta</h3>
+  <div id="resultadoExplainHistoriales"></div>
+  <hr>
+</div>
+
 
 <div>
-   <h2>Indice compuesto en Historiales</h2>
-   <button class="btn btn-create" onclick="toggleForm('formPestañaNOSQL')">Crear indice</button>
-   <button class="btn btn-delete" onclick="toggleForm('formPestañaNOSQL')">Eliminar indice</button>
+  <h2>Indice compuesto en Historiales</h2>
+  <button class="btn btn-create" onclick="toggleForm('formCreateIndiceHistorial')">Crear indice</button>
+  <button class="btn btn-delete" onclick="toggleForm('formDeleteIndiceHistorial')">Eliminar indice</button>
 </div>
 <br>
+<div id="formCreateIndiceHistorial" style="display:none;">
+  <h2>Crear indice compuesto <span style="color: #2ECC71;">(id_usuario, fecha)</span> en tabla Historiales</h2>
+  <button class="btn btn-create" onclick="crearIndiceHistoriales()">Crear indice</button>
+  <h3 style="margin-top: 10px;">Resultado Creacion</h3>
+  <div id="resultadoCrearIndiceHistoriales"></div>
+  <hr>
+</div>
+<div id="formDeleteIndiceHistorial" style="display:none;">
+  <h2>Eliminar indice compuesto <span style="color: #FF3333;">(id_usuario, fecha)</span> en tabla Historiales</h2>
+  <button class="btn btn-delete" onclick="borrarIndiceHistoriales()">Eliminar indice</button>
+  <h3 style="margin-top: 10px;">Resultado Eliminacion</h3>
+  <div id="resultadoBorrarIndiceHistoriales"></div>
+  <hr>
+</div>
 
 <div>
-   <h2>Transaccion ACID - Creacion de Playlist</h2>
-    <input type="text" id="nombrePlaylist" placeholder="Nombre de la playlist"><br><br>
-    <input type="text" id="cancionesPlaylist" placeholder="IDs de canciones(1,2,3)"><br><br>
-
-   <button class="btn btn-create" onclick="crearPlaylist()">Crear playlist</button>
-   <h3 style="margin-top: 10px;">Resultado de la transaccion</h3>
-   <pre id="resultadoPlaylist"></pre>
+  <h2>Transaccion ACID - Creacion de Playlist</h2>
+  <button class="btn btn-create" onclick="toggleForm('formCrearPlaylist')">Crear Playlist</button>
 </div>
 <br>
-
-
-
-    <h2>Canciones bien calificadas por género</h2>
-    <button onclick="descargarCSV()">
-        Descargar CSV
-    </button>
-
-    <input
-    type="number"
-    id="idGenero"
-    placeholder="Ingrese ID del género">
-
-    <pre id="resultadoCanciones"></pre>
-
-    <hr>
-	
-    <pre id="resultadoReproducciones"></pre>
-
-    <hr>
-
-    <h2>Total de canciones</h2>
-    <button onclick="verTotalCanciones()">
-        Ver
-    </button>
-    <pre id="resultadoTotal"></pre>
-
-    <hr>
-
-    <h2>Total de usuarios</h2>
-    <button onclick="verUsuarios()">
-        Ver
-    </button>
-
-    <pre id="usuarios"></pre>
-
-    <hr>
-
-    <h2>Total de canciones por genero</h2>
-    <button onclick="descargarGenerosCSV()">
-        Descargar CSV
-    </button>
-
-    <hr>
-
-    <h2>Canciones por álbum</h2>
-    <button onclick="descargarCancionesPorAlbumCSV()">
-        Descargar CSV
-    </button>
-
-    <hr>
-
-    <h2>Poblar tabla Usuarios</h2>
-    <button onclick="generarUsuarios()">
-        Genera hasta 6000 registros de prueba de id > 12 dentro de la tabla Usuarios.
-    </button>
-
-    <p id="resultadoGeneracion"></p>
-
-    <hr>
-
-    <h2>Vaciar tabla Usuarios</h2>
-    <button onclick="borrarUsuarios()">
-        Elimina todos los registros de id > 12 dentro de la tabla Usuarios.
-    </button>
-
-    <p id="resultadoBorrarUsuarios"></p>
-
-    <hr>
-
-    <h2>Analisis de consulta en tabla Usuarios</h2>
-    <button onclick="explainUsuarios()">
-        Ejecutar EXPLAIN ANALYZE de correo (usuario500@test.com) en Usuarios.
-    </button>
-
-    <pre id="resultadoExplain"></pre>
-
-    <hr>
-
-    <h2>Poblar tabla Historiales</h2>
-    <button onclick="generarHistoriales()">
-        Intenta generar 1000 registros de prueba dentro de la tabla Historiales.
-    </button>
-
-    <p id="resultadoGeneracionHistoriales"></p>
-
-    <hr>
-
-    <h2>Vaciar tabla Historiales</h2>
-    <button onclick="borrarHistoriales()">Elimina todos los registros dentro de la tabla Historiales.</button>
-    <p id="resultadoBorradoHistoriales"></p>
-
-    <hr>
-
-    <h2>Analisis de consulta en tabla Historiales</h2>
-    <button onclick="explainHistoriales()">
-        Ejecutar EXPLAIN ANALYZE de canciones del usuario 3 en un periodo de tiempo especifico, en la tabla Historiales.
-    </button>
-    <pre id="resultadoExplainHistoriales"></pre>
-
-    <hr>
-
-    <h2>Índice de Historiales</h2>
-    <button onclick="crearIndiceHistoriales()">
-        Crear índice compuesto (id_usuario, fecha)
-    </button>
-    <p id="resultadoCrearIndiceHistoriales"></p>
-    <button onclick="borrarIndiceHistoriales()">
-        Eliminar índice compuesto (id_usuario, fecha)
-        </button>
-    <p id="resultadoBorrarIndiceHistoriales"></p>
+<div id="formCrearPlaylist" style="display:none;">
+  <h2>Crear <span style="color: #2ECC71;">Playlist</span> con canciones</h2>
+  <input type="text" id="nombrePlaylist" placeholder="Nombre de la playlist"><br><br>
+  <input type="text" id="cancionesPlaylist" placeholder="IDs de canciones (1,2,3)"><br><br>
+  <button class="btn btn-create" onclick="crearPlaylist()">Crear playlist</button>
+  <h3 style="margin-top: 10px;">Resultado de la transaccion</h3>
+  <div id="resultadoPlaylist"></div>
+</div>
 
     <hr>
 
@@ -610,25 +542,13 @@ async function agregarCancion() {
             }
         }
 
-        async function crearPlaylist() {
-            const nombre = document.getElementById('nombrePlaylist').value;
-            const canciones = document.getElementById('cancionesPlaylist').value
-                .split(',')
-                .map(id => Number(id.trim()));
 
-            const respuesta = await fetch('/api/playlists/crear', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nombre, canciones })
-            });
-
-            const datos = await respuesta.json();
-            document.getElementById('resultadoPlaylist').textContent = JSON.stringify(datos, null, 2);
-        }
     </script>
 
 <script src="presentacion_funciones.js"></script>
 <script src="presentacion_reportes.js"></script>
+<script src="funciones_optimizacion.js"></script>
+<script src="funcion_ACID.js"></script>
 
 </body>
 </html>
