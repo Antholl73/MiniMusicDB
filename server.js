@@ -76,6 +76,9 @@ app.use(require('./routes/CRUD_UPDATE'));
 // DELETE
 app.use(require('./routes/CRUD_DELETE'));
 
+// Imagen de el modelo relacional
+app.use(express.static('public'));
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
