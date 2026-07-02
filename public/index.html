@@ -248,8 +248,22 @@
 
 <div id="formArtistaTendencia" style="display:none;">
   <h2>Ver reporte <span style="color: #2ECC71;">Artistas en Tendencia</span></h2>
-  <input type="date" id="reporte1_fecha_inicio" placeholder="Fecha Inicio">
-  <input type="date" id="reporte1_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <input type="date" id="reporte1_fecha_inicio">
+  <input type="date" id="reporte1_fecha_fin"><br><br>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT a.id, a.nombre, COUNT(h.id) AS total_escuchas,
+COUNT(DISTINCT c.id) AS canciones_distintas,
+COUNT(DISTINCT h.id_usuario) AS oyentes_unicos,
+MIN(h.fecha) AS primera_escucha, MAX(h.fecha) AS ultima_escucha
+FROM historiales h
+INNER JOIN canciones c ON h.id_cancion = c.id
+INNER JOIN artistas  a ON c.id_artista = a.id
+WHERE h.fecha >= $1 AND h.fecha <= $2
+GROUP BY a.id, a.nombre
+HAVING COUNT(h.id) >= 1
+ORDER BY total_escuchas DESC, oyentes_unicos DESC</pre>
+  </details>
   <button class="btn btn-create" onclick="descargarArtistaTendencia()">Ver Reporte</button>
   <hr>
 </div>
@@ -257,6 +271,16 @@
 <div id="formCancionesPopularesGenero" style="display:none;">
   <h2>Ver reporte <span style="color: #FF8C00;">Canciones Populares Género</span></h2>
   <input type="number" id="reporte2_id_genero" placeholder="ID del Género"><br><br>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT canciones.nombre AS nombre_cancion,
+AVG(calificaciones.valoracion) AS calificacion_promedio
+FROM canciones
+LEFT JOIN calificaciones ON canciones.id = calificaciones.id_cancion
+WHERE canciones.id_genero = $1
+GROUP BY canciones.nombre, canciones.id
+HAVING AVG(calificaciones.valoracion) >= 3</pre>
+  </details>
   <button class="btn btn-read" onclick="descargarCancionesPopularesGenero()">Ver Reporte</button>
   <hr>
 </div>
@@ -264,16 +288,47 @@
 <div id="formCancionesTendenciaGenero" style="display:none;">
   <h2>Ver reporte <span style="color: #00D2FF;">Canciones Tendencia Género</span></h2>
   <input type="number" id="reporte3_id_genero" placeholder="ID del Género">
-  <input type="date" id="reporte3_fecha_inicio" placeholder="Fecha Inicio">
-  <input type="date" id="reporte3_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <input type="date" id="reporte3_fecha_inicio">
+  <input type="date" id="reporte3_fecha_fin"><br><br>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT c.id, c.nombre AS cancion, g.nombre AS genero,
+COUNT(h.id) AS total_escuchas,
+COUNT(DISTINCT h.id_usuario) AS oyentes_unicos,
+MIN(h.fecha) AS primera_escucha, MAX(h.fecha) AS ultima_escucha
+FROM historiales h
+INNER JOIN canciones c ON h.id_cancion = c.id
+INNER JOIN generos   g ON c.id_genero  = g.id
+WHERE g.id = $1 AND h.fecha >= $2 AND h.fecha <= $3
+GROUP BY c.id, c.nombre, g.nombre
+HAVING COUNT(h.id) >= 1
+ORDER BY total_escuchas DESC, oyentes_unicos DESC</pre>
+  </details>
   <button class="btn btn-update" onclick="descargarCancionesTendenciaGenero()">Ver Reporte</button>
   <hr>
 </div>
 
 <div id="formdiscograficasVirales" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Discográficas Virales</span></h2>
-  <input type="date" id="reporte4_fecha_inicio" placeholder="Fecha Inicio">
-  <input type="date" id="reporte4_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <input type="date" id="reporte4_fecha_inicio">
+  <input type="date" id="reporte4_fecha_fin"><br><br>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT d.id, d.nombre AS discografica,
+COUNT(h.id) AS total_escuchas,
+COUNT(DISTINCT c.id) AS canciones_distintas,
+COUNT(DISTINCT h.id_usuario) AS oyentes_unicos,
+MIN(h.fecha) AS primera_escucha, MAX(h.fecha) AS ultima_escucha
+FROM historiales h
+INNER JOIN canciones     c ON h.id_cancion     = c.id
+INNER JOIN albumes       a ON c.id_album        = a.id
+                          AND c.id_artista      = a.id_artista
+INNER JOIN discograficas d ON a.id_discografica = d.id
+WHERE h.fecha >= $1 AND h.fecha <= $2
+GROUP BY d.id, d.nombre
+HAVING COUNT(h.id) >= 1
+ORDER BY total_escuchas DESC, oyentes_unicos DESC</pre>
+  </details>
   <button class="btn btn-delete" onclick="descargarDiscograficasVirales()">Ver Reporte</button>
   <hr>
 </div>
@@ -281,14 +336,46 @@
 <div id="formGenerosTendencia" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Géneros Tendencia</span></h2>
   <p>Tendencias de los últimos 30 días</p>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT g.id, g.nombre AS genero,
+COUNT(h.id) AS total_escuchas_recientes,
+COUNT(DISTINCT c.id) AS canciones_distintas,
+COUNT(DISTINCT h.id_usuario) AS oyentes_unicos,
+MIN(h.fecha) AS primera_escucha_periodo,
+MAX(h.fecha) AS ultima_escucha_periodo
+FROM historiales h
+INNER JOIN canciones c ON h.id_cancion = c.id
+INNER JOIN generos   g ON c.id_genero  = g.id
+WHERE h.fecha >= CURRENT_DATE - INTERVAL '30 days'
+  AND h.fecha <= CURRENT_DATE
+GROUP BY g.id, g.nombre
+HAVING COUNT(h.id) >= 1
+ORDER BY total_escuchas_recientes DESC, oyentes_unicos DESC</pre>
+  </details>
   <button class="btn btn-delete" onclick="descargarGenerosTendencia()">Ver Reporte</button>
   <hr>
 </div>
 
 <div id="formHitsSemana" style="display:none;">
   <h2>Ver reporte <span style="color: #FF3333;">Hits de la Semana</span></h2>
-  <input type="date" id="reporte6_fecha_inicio" placeholder="Fecha Inicio">
-  <input type="date" id="reporte6_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <input type="date" id="reporte6_fecha_inicio">
+  <input type="date" id="reporte6_fecha_fin"><br><br>
+  <details>
+    <summary style="cursor:pointer; color:#888; font-size:0.9em; margin-bottom:8px;">Ver query</summary>
+    <pre class="query-block">SELECT c.id, c.nombre AS cancion, a.nombre AS artista,
+g.nombre AS genero, COUNT(h.id) AS total_escuchas,
+COUNT(DISTINCT h.id_usuario) AS oyentes_unicos,
+MIN(h.fecha) AS primera_escucha, MAX(h.fecha) AS ultima_escucha
+FROM historiales h
+INNER JOIN canciones c ON h.id_cancion = c.id
+INNER JOIN artistas  a ON c.id_artista = a.id
+INNER JOIN generos   g ON c.id_genero  = g.id
+WHERE h.fecha >= $1 AND h.fecha <= $2
+GROUP BY c.id, c.nombre, a.nombre, g.nombre
+HAVING COUNT(h.id) >= 1
+ORDER BY total_escuchas DESC, oyentes_unicos DESC</pre>
+  </details>
   <button class="btn btn-delete" onclick="descargarHitsSemana()">Ver Reporte</button>
   <hr>
 </div>
