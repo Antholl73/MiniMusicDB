@@ -49,7 +49,7 @@ app.use(require('./routes/crearIndiceHistoriales'));
 app.use(require('./routes/borrarIndiceHistoriales'));
 
 // Funciones INICIALES de prueba 
-app.use(require('./routes/registrarCancion'));
+app.use(require('./routes/registrarCancion')); // Funcion usada en el CRUD
 app.use(require('./routes/cancionesporAlbum'));
 app.use(require('./routes/crearPlaylist'));
 app.use(require('./routes/cancionesporGenero'));
