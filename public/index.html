@@ -234,18 +234,64 @@
 </div>
 
 
-
 <br>
    <h2>Reportes</h2>
 <div class="grid-3">
-  <button class="btn btn-create" onclick="toggleForm('formREPORTE1')">REPORTE1</button>
-  <button class="btn btn-read"   onclick="toggleForm('formREPORTE2')">REPORTE2</button>
-  <button class="btn btn-update" onclick="toggleForm('formREPORTE3')">REPORTE3</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE4')">REPORTE4</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE5')">REPORTE5</button>
-  <button class="btn btn-delete" onclick="toggleForm('formREPORTE6')">REPORTE6</button>
+  <button class="btn btn-create" onclick="toggleForm('formArtistaTendencia')">Artistas Tendencia</button>
+  <button class="btn btn-read"   onclick="toggleForm('formREPORTE2')">Cancioness Populares Genero</button>
+  <button class="btn btn-update" onclick="toggleForm('formREPORTE3')">Canciones Tendencia Genero</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE4')">Discograficas Virales</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE5')">Generos Tendencia</button>
+  <button class="btn btn-delete" onclick="toggleForm('formREPORTE6')">Hits Semana</button>
 </div>
 <br>
+
+<div id="formArtistaTendencia" style="display:none;">
+  <h2>Ver reporte <span style="color: #2ECC71;">Artistas en Tendencia</span></h2>
+  <input type="date" id="reporte1_fecha_inicio" placeholder="Fecha Inicio">
+  <input type="date" id="reporte1_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <button class="btn btn-create" onclick="descargarArtistaTendencia()">Ver Reporte</button>
+  <hr>
+</div>
+
+<div id="formREPORTE2" style="display:none;">
+  <h2>Ver reporte <span style="color: #FF8C00;">Canciones Populares Género</span></h2>
+  <input type="number" id="reporte2_id_genero" placeholder="ID del Género"><br><br>
+  <button class="btn btn-read" onclick="descargarCancionesPopularesGenero()">Ver Reporte</button>
+  <hr>
+</div>
+
+<div id="formREPORTE3" style="display:none;">
+  <h2>Ver reporte <span style="color: #00D2FF;">Canciones Tendencia Género</span></h2>
+  <input type="number" id="reporte3_id_genero" placeholder="ID del Género">
+  <input type="date" id="reporte3_fecha_inicio" placeholder="Fecha Inicio">
+  <input type="date" id="reporte3_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <button class="btn btn-update" onclick="descargarCancionesTendenciaGenero()">Ver Reporte</button>
+  <hr>
+</div>
+
+<div id="formREPORTE4" style="display:none;">
+  <h2>Ver reporte <span style="color: #FF3333;">Discográficas Virales</span></h2>
+  <input type="date" id="reporte4_fecha_inicio" placeholder="Fecha Inicio">
+  <input type="date" id="reporte4_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <button class="btn btn-delete" onclick="descargarDiscograficasVirales()">Ver Reporte</button>
+  <hr>
+</div>
+
+<div id="formREPORTE5" style="display:none;">
+  <h2>Ver reporte <span style="color: #FF3333;">Géneros Tendencia</span></h2>
+  <p>Tendencias de los últimos 30 días</p>
+  <button class="btn btn-delete" onclick="descargarGenerosTendencia()">Ver Reporte</button>
+  <hr>
+</div>
+
+<div id="formREPORTE6" style="display:none;">
+  <h2>Ver reporte <span style="color: #FF3333;">Hits de la Semana</span></h2>
+  <input type="date" id="reporte6_fecha_inicio" placeholder="Fecha Inicio">
+  <input type="date" id="reporte6_fecha_fin" placeholder="Fecha Fin"><br><br>
+  <button class="btn btn-delete" onclick="descargarHitsSemana()">Ver Reporte</button>
+  <hr>
+</div>
 
 <div>
    <h2>Diseño de Modulo NOSQL</h2>
@@ -582,6 +628,7 @@ async function agregarCancion() {
     </script>
 
 <script src="presentacion_funciones.js"></script>
+<script src="presentacion_reportes.js"></script>
 
 </body>
 </html>
