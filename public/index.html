@@ -242,7 +242,7 @@
   <button class="btn btn-update" onclick="toggleForm('formCancionesTendenciaGenero')">Canciones en Tendencia por Genero</button>
   <button class="btn btn-delete" onclick="toggleForm('formdiscograficasVirales')">Discograficas Virales</button>
   <button class="btn btn-delete" onclick="toggleForm('formGenerosTendencia')">Generos en Tendencia</button>
-  <button class="btn btn-delete" onclick="toggleForm('formHitsSemana')">Hits de la Semana</button>
+  <button class="btn btn-delete" onclick="toggleForm('formHitsSemana')">Hits en un tiempo</button>
 </div>
 <br>
 
@@ -358,7 +358,7 @@ ORDER BY total_escuchas_recientes DESC, oyentes_unicos DESC</pre>
 </div>
 
 <div id="formHitsSemana" style="display:none;">
-  <h2>Ver reporte <span style="color: #FF3333;">Hits de la Semana</span></h2>
+  <h2>Ver reporte <span style="color: #FF3333;">Hits en un tiempo</span></h2>
   <input type="date" id="reporte6_fecha_inicio">
   <input type="date" id="reporte6_fecha_fin"><br><br>
   <details>
