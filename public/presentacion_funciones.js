@@ -246,5 +246,94 @@ WHERE id_playlist = $1 AND id_cancion = $2`;
     }
 }      
 
-// SECCION DE DELETE      
+// SECCION DE DELETE
+
+async function deleteCancion() {
+    const id = document.getElementById('delete_cancion_ID_cancion').value;
+    const pre = document.getElementById('resultado_delete_cancion');
+
+    const query =
+`DELETE FROM canciones
+WHERE id = $1
+RETURNING id, nombre`;
+
+    if (!id) {
+        pre.innerHTML = cardError({ mensaje: 'El ID de la canción es obligatorio.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/delete_cancion', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
+}
+
+async function deleteUsuario() {
+    const id = document.getElementById('delete_usuario_ID_usuario').value;
+    const pre = document.getElementById('resultado_delete_usuario');
+
+    const query =
+`DELETE FROM usuarios
+WHERE id = $1
+RETURNING id, correo, nombre`;
+
+    if (!id) {
+        pre.innerHTML = cardError({ mensaje: 'El ID del usuario es obligatorio.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/delete_usuario', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
+}
+
+async function deleteDetallePlaylist() {
+    const id_playlist = Number(document.getElementById('delete_detalle_ID_playlist').value);
+    const id_cancion = Number(document.getElementById('delete_detalle_ID_cancion').value);
+    const pre = document.getElementById('resultado_delete_detalle');
+
+    const query =
+`DELETE FROM detalles_playlist
+WHERE id_playlist = $1
+  AND id_cancion = $2
+RETURNING id_playlist, id_cancion, posicion`;
+
+    if (!id_playlist || !id_cancion) {
+        pre.innerHTML = cardError({ mensaje: 'Todos los campos son obligatorios.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/delete_detalle_playlist', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id_playlist, id_cancion })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
+}      
   
