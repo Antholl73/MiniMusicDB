@@ -66,9 +66,14 @@ app.use(require('./routes/hitsSemana'));
 app.use(require('./routes/totalCanciones'));
 
 // Funciones del CRUD
+// CREATE
 app.use(require('./routes/CRUDinsertarDetalle'));
 app.use(require('./routes/CRUDinsertarUsuario'));
+// READ
 app.use(require('./routes/CRUD_READ'));
+// UPDATE
+app.use(require('./routes/CRUD_UPDATE'));
+// DELETE
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

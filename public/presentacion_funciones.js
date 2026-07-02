@@ -68,7 +68,7 @@ async function insertarUsuario() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(correo)) {
-        pre.innerHTML = cardError('El correo no tiene un formato válido.');
+        pre.innerHTML = cardError({ mensaje: 'El correo no tiene un formato válido.' });
         return;
     }
 
@@ -134,4 +134,40 @@ async function pestañaDetallesPlaylist() {
     }
     window.open(`/api/read_detalles_playlist?id_playlist=${id}`, '_blank');
 }
+
+// SECCION DE UPDATE
+
+async function updateNombreGeneroCancion() {
+    const id = document.getElementById('update_cancion_ID').value;
+    const nombre = document.getElementById('update_cancion_nombre').value;
+    const genero = Number(document.getElementById('update_cancion_genero').value);
+    const pre = document.getElementById('resultado_update_cancion');
+
+    const query =
+`UPDATE canciones
+SET nombre = $2, id_genero = $3
+WHERE id = $1
+RETURNING id, nombre, id_genero`;
+
+    if (!id || !nombre || !genero) {
+        pre.innerHTML = cardError({ mensaje: 'Todos los campos son obligatorios.' }, query);
+        return;
+    }
+
+    try {
+        const respuesta = await fetch('/api/update_cancion', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, nombre, genero })
+        });
+        const datos = await respuesta.json();
+        pre.innerHTML = datos.ok
+            ? cardExito(datos.mensaje, datos.data, query)
+            : cardError(datos, query);
+    } catch (error) {
+        pre.innerHTML = cardError({ mensaje: error.message }, query);
+    }
+}      
+
+// SECCION DE DELETE      
   
